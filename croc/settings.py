@@ -79,12 +79,12 @@ WSGI_APPLICATION = "croc.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": dbcfg.ENGINE,
-        "NAME": dbcfg.NAME,
-        "USER": dbcfg.USER,
-        "PASSWORD": dbcfg.PASSWORD,
-        "HOST": dbcfg.HOST,
-        "PORT": dbcfg.PORT,
+        "ENGINE": cfg.ENGINE,
+        "NAME": cfg.NAME,
+        "USER": cfg.USER,
+        "PASSWORD": cfg.PASSWORD,
+        "HOST": cfg.HOST,
+        "PORT": cfg.PORT,
     }
 }
 

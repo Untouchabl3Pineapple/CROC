@@ -1,3 +1,6 @@
+// import {wrap_edit} from './edit.js';
+
+
 const HEADS = 5
 const HEAD = ["№ Поста", "Тип происшествия", "Описание", "Время фиксации", "Время устранения"];
 const COLUMN_WIDTH = ["width: 10%", "width: 20%", "width: 40%", "width: 15%", "width: 15%"]
@@ -25,7 +28,7 @@ function show_events(jsonEvents) {
 
   for (let i = 0; i < HEADS; i++) {
     let eventsHeadNum = document.createElement("td");
-    eventsHeadNum.id = i;
+    eventsHeadNum.id = "evnetsHeadNum" + i;
     eventsHeadNum.className = "eventsHeadTd";
     eventsHeadNum.style = COLUMN_WIDTH[i];
     eventsHeadNum.innerHTML = HEAD[i];
@@ -49,7 +52,7 @@ function show_events(jsonEvents) {
 
   for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
     let eventsBodyRowNum = document.createElement("tr");
-    eventsBodyRowNum.id = i;
+    eventsBodyRowNum.id =  "eventsBodyRowNum" + i;
     eventsTBody.append(eventsBodyRowNum);
 
     if (i % 2 == 0) {
@@ -61,37 +64,41 @@ function show_events(jsonEvents) {
     let postNum = document.createElement("td");
     postNum.innerHTML = i;
     postNum.className = "eventsTd";
+    postNum.id = "post" + i;
     eventsBodyRowNum.append(postNum);
 
-    let typeEvent = document.createElement("select");    
-    if (i % 2 == 0) {
-      typeEvent.className = "typeEventEven";
-    } else {
+    let typeEvent = document.createElement("td");   
+    typeEvent.id = "type_event" + i; 
+    // if (i % 2 == 0) {
+      // typeEvent.className = "typeEventEven";
+    // } else {
     typeEvent.className = "typeEvent";
-    }
-    let frameEvent = document.createElement("td");
-    frameEvent.append(typeEvent);
+    typeEvent.innerHTML = eventTypesJson[0].eventtype;
+    // }
+    // let frameEvent = document.createElement("td");
+    // frameEvent.append(typeEvent);
 
-    for (let i = 0; i < eventTypesJson.length; i++) {
-      let option = document.createElement("option");
-      option.value = eventTypesJson[i].eventtype;
-      option.text = eventTypesJson[i].eventtype;
-      option.id = i;
-      typeEvent.append(option);
-    }
-    eventsBodyRowNum.append(frameEvent);
+    // for (let i = 0; i < eventTypesJson.length; i++) {
+      // let option = document.createElement("option");
+      // option.value = eventTypesJson[i].eventtype;
+      // option.text = eventTypesJson[i].eventtype;
+      // option.id = "option" + i;
+      // typeEvent.append(option);
+    // }
+    eventsBodyRowNum.append(typeEvent);
 
     let descriptionValue = document.createElement("input");
     let descriptionAddButton = document.createElement("button");
     descriptionAddButton.innerHTML = jsonEvents[i].eventdescription;
     descriptionAddButton.innerHTML = "Test description only";
+    descriptionAddButton.id = "desc" + i;
     if (i % 2 == 0) {
       descriptionAddButton.className = "descriptionButtonEven";
     } else {
       descriptionAddButton.className = "descriptionButton";
     }
 
-    descriptionAddButton.onclick = openWindow;
+    descriptionAddButton.onclick = function() {openEditing(i)};
 
     let frameButton = document.createElement("td");
     frameButton.append(descriptionAddButton);
@@ -100,11 +107,13 @@ function show_events(jsonEvents) {
     let timeDetection = document.createElement("td");
     timeDetection.innerHTML = jsonEvents[i].detectingtime;
     timeDetection.className = "eventsTd";
+    timeDetection.id = "detect" + i;
     eventsBodyRowNum.append(timeDetection);
 
     let timeFixing = document.createElement("td");
     timeFixing.innerHTML = jsonEvents[i].fixingtime;
     timeFixing.className = "eventsTd";
+    timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
   }
 }
@@ -123,20 +132,34 @@ function wrap() {
 
 wrap();
 
-function openWindow() {
-  newWindow = window.open("", null, "left=300,top=500,height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");  
+
+
+function openEditing(row_num) {
+  let post = document.getElementById("post" + row_num).innerHTML;
+  let type_event = document.getElementById("type_event" + row_num).innerHTML;
+  let desc = document.getElementById("desc" + row_num).innerHTML;
+  let time_detect = document.getElementById("detect" + row_num).innerHTML;
+  let time_fixing = document.getElementById("fix" + row_num).innerHTML;
+
+  localStorage.setItem("post", post);
+  localStorage.setItem("type_event", type_event);
+  localStorage.setItem("desc", desc);
+  localStorage.setItem("time_detect", time_detect);
+  localStorage.setItem("time_fixing", time_fixing);
   
-  let descInput = document.createElement("input");
-  descInput.className = "descInput";
+  document.location.href = "edit";
+  // wrap_edit()
+  // newWindow = window.open("", null, "left=300,top=500,height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");  
+  
+  // let descInput = document.createElement("input");
+  // descInput.className = "descInput";
 
-  let descInputButton = document.createElement("button");
-  descInputButton.onclick = setDescription;
-  descInputButton.className = "descInputButton";
+  // let descInputButton = document.createElement("button");
+  // descInputButton.onclick = setDescription;
+  // descInputButton.className = "descInputButton";
 
-  newWindow.append(descInput);
-  newWindow.append(descInputButton);
+  // newWindow.append(descInput);
+  // newWindow.append(descInputButton);
 }
 
-function setDescription() {
-  alert("aa");
-}
+

@@ -22,6 +22,10 @@ def emulator(request):
     return render(request, "general/emulator.html")
 
 
+def edit(request):
+    return render(request, "general/edit.html")
+
+
 class ButtonsEventsViewSet(viewsets.ModelViewSet):
     queryset = Buttonsevents.objects.all()
     serializer_class = ButtonsEventsSerializer
