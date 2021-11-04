@@ -1,0 +1,17 @@
+button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* background: transparent;
+    border: none; */
+}
+
+.topButton {
+    border-top-right-radius: 30%;
+    border-top-left-radius: 30%;
+}
+
+.bottomButton {
+    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+}

@@ -1,0 +1,65 @@
+.eventsTable {
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 90%;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.typeEvent {
+    background-color: cadetblue;
+    font-size: large;
+    border: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.typeEventEven {
+    background-color: cornsilk;
+    font-size: large;
+    border: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+.descriptionButton {
+    text-align: center;
+    border: none;
+    font-size: large;
+    background-color: cadetblue;
+}
+
+.descriptionButtonEven {
+    text-align: center;
+    border: none;
+    font-size: large;
+    background-color: cornsilk;
+}
+
+.eventsHeadRow {
+    background-color: red;
+}
+
+
+.eventsHeadTd {
+    padding-left: 50px;
+}
+
+
+.eventsTd {
+    padding-left: 50px;
+}
+
+.eventsBodyRowOdd {
+    background-color: cadetblue;
+}
+
+.eventsBodyRowEven {
+    background-color: cornsilk;
+}

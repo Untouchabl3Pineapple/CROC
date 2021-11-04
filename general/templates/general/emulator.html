@@ -1,0 +1,17 @@
+{% extends 'general/base.html' %}
+{% load static %}
+
+{% block title %}
+Эмулятор
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'general/css/monitoring.css' %}"/>
+<link rel="stylesheet" href="{% static 'general/css/emulator.css' %}"/>
+{% endblock %}
+
+{% block body %}
+<script src={% static "general/js/temp.js" %}></script>
+<script src={% static "general/js/emulator.js" %}></script>
+
+{% endblock %}
