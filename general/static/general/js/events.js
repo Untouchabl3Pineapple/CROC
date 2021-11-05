@@ -98,7 +98,7 @@ function show_events(jsonEvents) {
       descriptionAddButton.className = "descriptionButton";
     }
 
-    descriptionAddButton.onclick = function() {openEditing(i)};
+    descriptionAddButton.onclick = function() {openEditing(jsonEvents[i].id)};
 
     let frameButton = document.createElement("td");
     frameButton.append(descriptionAddButton);
@@ -134,20 +134,42 @@ wrap();
 
 
 
-function openEditing(row_num) {
-  let post = document.getElementById("post" + row_num).innerHTML;
-  let type_event = document.getElementById("type_event" + row_num).innerHTML;
-  let desc = document.getElementById("desc" + row_num).innerHTML;
-  let time_detect = document.getElementById("detect" + row_num).innerHTML;
-  let time_fixing = document.getElementById("fix" + row_num).innerHTML;
-
-  localStorage.setItem("post", post);
-  localStorage.setItem("type_event", type_event);
-  localStorage.setItem("desc", desc);
-  localStorage.setItem("time_detect", time_detect);
-  localStorage.setItem("time_fixing", time_fixing);
-  
+function openEditing(id_clicked) {
+  localStorage.setItem("id", id_clicked);
   document.location.href = "edit";
+ 
+  // $.ajax({
+  //       url: "http://127.0.0.1:8000/main/Events",
+  //       method: "get",
+  //       dataType : "json",
+  //       async: false, 
+  //       // data: {  
+  //         // id : id_clicked
+  //       // },
+  //       success: function(data) {
+  //         for (let i = 0; i < data.length; i++) {
+  //           if (data[i].id == localStorage.getItem("id")) {
+  //             // localStorage.setItem("post", data[i].);
+  //             // // localStorage.setItem("type_event",  );
+  //             // let desc = document.getElementById("desc" + row_num).innerHTML;
+  //             // let time_detect = document.getElementById("detect" + row_num).innerHTML;
+  //             // let time_fixing = document.getElementById("fix" + row_num).innerHTML;
+  //             // localStorage.setItem("desc", data[i].eventdescription);
+  //             localStorage.setItem("time_detect", data[i].detectingtime);
+  //             localStorage.setItem("time_fixing", data[i].fixingtime);       
+  //             document.location.href = "edit";
+  //           }
+  //           break;
+  //         }
+  //       },
+  //     });
+
+//   let post = document.getElementById("post" + row_num).innerHTML;
+//   let type_event = document.getElementById("type_event" + row_num).innerHTML;
+//   let desc = document.getElementById("desc" + row_num).innerHTML;
+//   let time_detect = document.getElementById("detect" + row_num).innerHTML;
+//   let time_fixing = document.getElementById("fix" + row_num).innerHTML;
+
   // wrap_edit()
   // newWindow = window.open("", null, "left=300,top=500,height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");  
   

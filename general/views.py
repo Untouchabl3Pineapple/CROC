@@ -30,6 +30,8 @@ class ButtonsEventsViewSet(viewsets.ModelViewSet):
     queryset = Buttonsevents.objects.all()
     serializer_class = ButtonsEventsSerializer
 
+        
+
 
 class ButtonsPostsViewSet(viewsets.ModelViewSet):
     queryset = Buttonsposts.objects.all()
