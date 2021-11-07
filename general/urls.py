@@ -29,4 +29,5 @@ urlpatterns = [
     path("", include(router.urls)),
     path("monitoring/", views.general, name="home"),
     path("emulator/", views.emulator, name="emulator"),
+    path("monitoring/edit/", views.edit, name="edit")
 ]

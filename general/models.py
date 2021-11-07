@@ -6,7 +6,6 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-import uuid
 
 
 class AuthGroup(models.Model):
@@ -43,7 +42,7 @@ class AuthUser(models.Model):
     last_login = models.DateTimeField(blank=True, null=True)
     is_superuser = models.BooleanField()
     username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
     is_staff = models.BooleanField()
@@ -76,7 +75,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Buttonsevents(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True)
     buttoncolor = models.SmallIntegerField()
     number = models.SmallIntegerField()
 
@@ -84,9 +83,6 @@ class Buttonsevents(models.Model):
         managed = False
         db_table = 'buttonsevents'
 
-    def __str__(self):
-        return "ButtonEvents"
-    
 
 class Buttonsposts(models.Model):
     post = models.SmallIntegerField(primary_key=True)
@@ -99,8 +95,26 @@ class Buttonsposts(models.Model):
         managed = False
         db_table = 'buttonsposts'
 
-    def __str__(self):
-        return "ButtonPosts"
+
+class Cars(models.Model):
+    carid = models.IntegerField(primary_key=True)
+    model = models.TextField(blank=True, null=True)
+    color = models.TextField(blank=True, null=True)
+    years = models.IntegerField(blank=True, null=True)
+    registrationdate = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cars'
+
+
+class Dc(models.Model):
+    driverid = models.ForeignKey('Drivers', models.DO_NOTHING, db_column='driverid', blank=True, null=True)
+    carid = models.ForeignKey(Cars, models.DO_NOTHING, db_column='carid', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dc'
 
 
 class DjangoAdminLog(models.Model):
@@ -147,6 +161,17 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Drivers(models.Model):
+    driverid = models.IntegerField(primary_key=True)
+    driverlicense = models.TextField(blank=True, null=True)
+    fio = models.TextField(blank=True, null=True)
+    phone = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'drivers'
+
+
 class Events(models.Model):
     id = models.UUIDField(primary_key=True)
     buttonevent = models.ForeignKey(Buttonsevents, models.DO_NOTHING)
@@ -155,14 +180,11 @@ class Events(models.Model):
     detectingtime = models.DateTimeField()
     fixingtime = models.DateTimeField(blank=True, null=True)
     timeupdate = models.DateTimeField()
-    user_login = models.ForeignKey('Users', models.DO_NOTHING, db_column='user_login', blank=True, null=True)
+    user_login = models.ForeignKey('Userss', models.DO_NOTHING, db_column='user_login', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'events'
-
-    def __str__(self):
-        return "Events"
 
 
 class Eventstypes(models.Model):
@@ -173,8 +195,18 @@ class Eventstypes(models.Model):
         managed = False
         db_table = 'eventstypes'
 
-    def __str__(self):
-        return "EventsTypes"
+
+class Fines(models.Model):
+    fineid = models.IntegerField(primary_key=True)
+    finetype = models.TextField(blank=True, null=True)
+    amount = models.IntegerField(blank=True, null=True)
+    finedate = models.DateField(blank=True, null=True)
+    driverid = models.ForeignKey(Drivers, models.DO_NOTHING, db_column='driverid', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'fines'
+
 
 class GeneralButtonsevents(models.Model):
     button_type = models.SmallIntegerField()
@@ -203,7 +235,82 @@ class GeneralEventstypes(models.Model):
         db_table = 'general_eventstypes'
 
 
+class Hubs(models.Model):
+    id = models.IntegerField(primary_key=True)
+    hub_id = models.CharField(unique=True, max_length=200)
+    name = models.CharField(max_length=200)
+    region = models.CharField(max_length=20)
+    game_mode = models.CharField(max_length=100)
+    min_skill_lvl = models.IntegerField()
+    max_skill_lvl = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hubs'
+
+
+class Matches(models.Model):
+    id = models.IntegerField(primary_key=True)
+    match_id = models.CharField(unique=True, max_length=200)
+    region = models.CharField(max_length=20)
+    map = models.CharField(max_length=50)
+    score = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False
+        db_table = 'matches'
+
+
+class MatchesStatistics(models.Model):
+    kills = models.IntegerField()
+    deaths = models.IntegerField()
+    average_kd_ratio = models.FloatField()
+    mvps = models.IntegerField()
+    triple_kills = models.IntegerField()
+    quadro_kills = models.IntegerField()
+    penta_kills = models.IntegerField()
+    fk_users_matches_hubs = models.ForeignKey('UsersMatchesHubs', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'matches_statistics'
+
+
 class Users(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nickname = models.CharField(unique=True, max_length=30)
+    country = models.CharField(max_length=20)
+    guid = models.CharField(unique=True, max_length=200)
+    steam_id = models.CharField(unique=True, max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'users'
+
+
+class UsersMatchesHubs(models.Model):
+    fk_users = models.ForeignKey(Users, models.DO_NOTHING, blank=True, null=True)
+    fk_matches = models.ForeignKey(Matches, models.DO_NOTHING, blank=True, null=True)
+    fk_hubs = models.ForeignKey(Hubs, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'users_matches_hubs'
+
+
+class UsersStatistics(models.Model):
+    lvl = models.IntegerField()
+    elo = models.IntegerField()
+    matches = models.IntegerField()
+    average_kd_ratio = models.FloatField()
+    fk_users = models.ForeignKey(Users, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'users_statistics'
+
+
+class Userss(models.Model):
     login = models.CharField(primary_key=True, max_length=255)
     name = models.CharField(max_length=127)
     surname = models.CharField(max_length=127)
@@ -212,7 +319,4 @@ class Users(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'users'
-
-    def __str__(self):
-        return "Users"
+        db_table = 'userss'
