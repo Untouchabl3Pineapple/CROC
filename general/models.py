@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+import uuid
 
 
 class AuthGroup(models.Model):
@@ -75,7 +76,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Buttonsevents(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     buttoncolor = models.SmallIntegerField()
     number = models.SmallIntegerField()
 

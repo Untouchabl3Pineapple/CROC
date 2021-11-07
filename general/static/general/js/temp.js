@@ -5,7 +5,7 @@ const YELLOW_COLOR  = 2
 const GREEN_COLOR   = 3
 
 
-function updateBoard(jsonRes) {
+function loadBoard(jsonRes) {
     let monitoringDiv = document.createElement("div");
     monitoringDiv.id = "mondiv";
     monitoringDiv.className = "monitoringDiv";
@@ -20,13 +20,16 @@ function updateBoard(jsonRes) {
     monitoringTable.append(monitoringTBody);
 
     let monitoringTr1 = document.createElement("tr");
-    monitoringTr1.className = "monitoringTr1";
+    monitoringTr1.id = "monitoringTr1";
+    monitoringTr1.className = "monitoringTr";
     monitoringTBody.append(monitoringTr1);
     let monitoringTr2 = document.createElement("tr");
-    monitoringTr2.className = "monitoringTr2"
+    monitoringTr2.id = "monitoringTr2";
+    monitoringTr2.className = "monitoringTr"
     monitoringTBody.append(monitoringTr2);
     let monitoringTr3 = document.createElement("tr");
-    monitoringTr3.className = "monitoringTr3";
+    monitoringTr3.id = "monitoringTr3";
+    monitoringTr3.className = "monitoringTr";
     monitoringTBody.append(monitoringTr3);
 
     for (let i = 0; i < POSTS; ++i) {
@@ -55,13 +58,42 @@ function updateBoard(jsonRes) {
 }
 
 
+function loadNewInform(jsonRes) {
+    for (let i = 0; i < POSTS; ++i) {
+        let monitoringTdTop = document.createElement("td");
+        monitoringTdTop.id = jsonRes[i].leftside + "_" + jsonRes[i].leftcolor + "_" + i + "t";
+        monitoringTdTop.className = "accdient-registration-top";
+        if (jsonRes[i].leftcolor == RED_COLOR) { monitoringTdTop.style = "background-color: #ff1f00" }
+        else if (jsonRes[i].leftcolor == YELLOW_COLOR) { monitoringTdTop.style = "background-color: #ffff00" }
+        else { monitoringTdTop.style = "background-color: #19ff19" };
+        monitoringTr1.append(monitoringTdTop);
+
+        let monitoringTdBottom = document.createElement("td");
+        monitoringTdBottom.id = jsonRes[i].rightside + "_" + jsonRes[i].rightcolor + "_" + i + "b";
+        monitoringTdBottom.className = "accdient-registration-bottom";
+        if (jsonRes[i].rightcolor == RED_COLOR) { monitoringTdBottom.style = "background-color: #ff1f00" }
+        else if (jsonRes[i].rightcolor == YELLOW_COLOR) { monitoringTdBottom.style = "background-color: #ffff00" }
+        else { monitoringTdBottom.style = "background-color: #19ff19" };
+        monitoringTr3.append(monitoringTdBottom);
+    }
+}
+
+
+function clearButtons() {
+    $('.accdient-registration-top').remove();
+    $('.accdient-registration-bottom').remove();
+}   
+
+
 function checkMove(jsonRes) {
     if (document.getElementsByClassName("monitoringDiv").length != 0) {
         // Received a signal from the simulator -> else: the user updated the page
-        document.getElementById("mondiv").remove()
+        clearButtons();
+        loadNewInform(jsonRes);
     }
-
-    updateBoard(jsonRes);
+    else {
+        loadBoard(jsonRes);
+    }
 }   
 
 
