@@ -73,41 +73,6 @@ function postHTML() {
 }
 
 
-function startDay() {
-    $.ajax({
-        url: "http://127.0.0.1:8000/main/ButtonsPosts/?format=json",
-        method: "get",
-        dataType: "json",
-        async: false,
-        success: function(data){
-            for (let i = 0; i < data.length; ++i) {
-                dbPostButtonsEvents(2, data[i].leftside)
-                dbPostButtonsEvents(2, data[i].rightside)
-            }
-            postHTML();
-            client.send("UPDATE BOARD");
-        }
-    });
-}
-
-function endDay() {
-    $.ajax({
-        url: "http://127.0.0.1:8000/main/ButtonsPosts/?format=json",
-        method: "get",
-        dataType: "json",
-        async: false,
-        success: function(data){
-            for (let i = 0; i < data.length; ++i) {
-                dbPostButtonsEvents(3, data[i].leftside)
-                dbPostButtonsEvents(3, data[i].rightside)
-            }
-            postHTML();
-            client.send("UPDATE BOARD");
-        }
-    });
-}
-
-
 function pressAllButtons(event) {
     let buttonId = event.target.id;
     let buttonColor;
@@ -131,7 +96,7 @@ function pressAllButtons(event) {
     });
 }
 
-
+update();
 let client = new WebSocket("ws://localhost:8080");
 
 client.onopen = () => {

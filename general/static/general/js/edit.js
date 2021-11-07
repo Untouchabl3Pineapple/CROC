@@ -57,7 +57,8 @@ function wrap_edit(jsonData) {
     timeFixTd.className = "infoTd";
 
     // TODO 
-    postTd.innerHTML = "test post";
+    // postTd.innerHTML = "test post";
+    postTd.innerHTML = localStorage.getItem("post");
     timeDetectTd.innerHTML = "test time detect";
     timeFixTd.innerHTML = "time fix test";
 
@@ -88,21 +89,33 @@ function wrap_edit(jsonData) {
     let typeBody = document.createElement("tbody");
     typeTable.append(typeBody);
 
-    for (let i = 0; i < 2; i++) {
-      let typeRow = document.createElement("tr");
+    for (let i = 0; i < 2; i++) {      let typeRow = document.createElement("tr");
       typeBody.append(typeRow);
       for (let j = 0; j < 3; j++) {
         let typeTd = document.createElement("td");
 
         let tdButton = document.createElement("button");
         tdButton.className = "tdButton";
-        tdButton.innerHTML = "i + j";
+        tdButton.id = i * 3 + j;
+
+        tdButton.onclick = function() {
+          if (this.className == "tdButton") {
+            this.className = "tdButtonActivated";
+            for (let k = 0; k < 6; k++) {
+              if (k.toString() != this.id) {
+                document.getElementById(k.toString()).className = "tdButton";
+              }
+            }
+          } else {
+            this.className = "tdButton";
+          }
+        }
+        tdButton.innerHTML = tdButton.id;
         typeTd.append(tdButton);
 
       
         typeTd.className = "typeTd";
         // TODO
-        // typeTd.innerHTML = i + ";" + j;
         typeRow.append(typeTd);
       }
     }
@@ -123,56 +136,6 @@ function wrap_edit(jsonData) {
     buttons_div.append(buttonSave);
 
 
-
-    // // let post1 = document.createElement("span");
-    // // post1.innerHTML = localStorage.getItem("post");
-
-    // // let type = document.createElement("span");
-    // // type.innerHTML = localStorage.getItem("type_event");
-    // let detect = document.createElement("span");
-    // detect.innerHTML = localStorage.getItem("time_detect");
-    // let fix = document.createElement("span");
-    // fix.innerHTML = localStorage.getItem("time_fixing")
-
-    // info_div.append(jsonData.detectingtime);
-
-    // let desc_head = document.createElement("span");
-    // desc_head.innerHTML = "Описание происшествия";
-
-    // let desc_input = document.createElement("input");
-    // desc_input.innerHTML = desc.innerHTML;
-
-    // desc_div.append(desc_head);
-    // desc_div.append(desc_input);
-
-    // let type_event_head = document.createElement("span");
-    // type_event_div.innerHTML = "Тип происшествия";
-
-    // let typeEvent = document.createElement("select");   
-
-    // for (let i = 0; i < 3; i++) {
-    //   let option = document.createElement("option");
-    //   option.value = i;
-    //   option.text = i;
-    //   option.id = "option" + i;
-    //   typeEvent.append(option);
-    // }
-
-    // // type_event_div.append(type_event_head);
-    // // type_event_div.append(typeEvent);
-
-
-    // let save_button = document.createElement("button");
-    // save_button.innerHTML = "Сохранить";
-    // save_button.onclick = save_info;
-
-    // let delete_button = document.createElement("button");
-    // delete_button.innerHTML = "Удалить";
-    // delete_button.onclick = delete_info;
-
-
-    // document.body.append(save_button);
-    // document.body.append(delete_button);
   }
 
 
@@ -184,34 +147,15 @@ wrap_edit();
 
 
 
-  function save_info() {
-    // const csrftoken = getCookie("csrftoken");
-    // console.log(csrftoken);
-    
-    // let descJSON = {
-    //     "eventdescription": ,
-    //     "number": buttonNumber,
-    // };
-
-    // let headers = {"X-CSRFToken": csrftoken}
-    // let temp = JSON.stringify(dbJson);
-    // console.log(temp);
-
-    // $.ajax({
-    //     url: "http://127.0.0.1:8000/main/Events/",
-    //     data: temp,
-    //     headers: headers,
-    //     method: "p",
-    //     contentType: "application/json",
-    //     dataType: "json",
-    //     async: false,
-    //     success: function(data){
-    //         console.log(data);
-    //     }
-    // });
-  }
 
 
-  function delete_info() {
 
-  }
+
+function save_info() {
+
+}
+
+
+function delete_info() {
+
+}

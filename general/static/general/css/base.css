@@ -1,4 +1,4 @@
-@import "https://use.fontawesome.com/releases/v5.8.2/css/all.css";
+/* @import "https://use.fontawesome.com/releases/v5.8.2/css/all.css";
 
 body {
     margin: 0;
@@ -31,6 +31,83 @@ body {
     font-family: Verdana, Tahoma, sans-serif;
     padding: 5px 10px;
 }
+
+.end_elem {
+  margin-left: 90%;
+} */
+
+
+@import "https://use.fontawesome.com/releases/v5.8.2/css/all.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    /* background-image: url(BackgroundPic.png); */
+    background-size: cover;
+    text-align: center;
+}
+
+.menu {
+    background: linear-gradient(21deg, #dd03e4, #5611ec);
+    display: flex;
+    padding: 15px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding-top: 5px;
+}
+
+.menu li {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-family: Verdana, Tahoma, sans-serif;
+    padding: 5px 10px;
+}
+/* a.button {
+    position: relative;
+    width: 105px;
+    height: 17px;
+    left: 512px;
+    top: 1px;
+    background: #FFFFFF;
+    border-radius: 0px 15px 15px 15px;
+    text-decoration: none;
+    font-family: Verdana, Tahoma, sans-serif;
+    box-shadow: 1px 1px 5px 2px  black;
+}
+a.button2 {
+    position: relative;
+    width: 105px;
+    height: 17px;
+    left: 586px;
+    top: 1px;
+    background: #FFFFFF;
+    border-radius: 0px 15px 15px 15px;
+    text-decoration: none;
+    font-family: Verdana, Tahoma, sans-serif;
+    box-shadow: 1px 1px 5px 2px  black;
+}
+a.button3 {
+    position: relative;
+    width: 105px;
+    height: 17px;
+    left: 950px;
+    top: 1px;
+    background: #FFFFFF;
+    border-radius: 0px 15px 15px 15px;
+    text-decoration: none;
+    font-family: Verdana, Tahoma, sans-serif;
+    box-shadow: 1px 1px 5px 2px black; */
+/* } */
+
 
 .end_elem {
   margin-left: 90%;
