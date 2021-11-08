@@ -1,7 +1,7 @@
 const HEADS = 5
 const HEAD = ["№ Поста", "Тип происшествия", "Описание", "Время фиксации", "Время устранения"];
 const COLUMN_WIDTH = ["width: 10%", "width: 20%", "width: 40%", "width: 15%", "width: 15%"]
-const COUNT_HISTORY_LINES = 15
+const COUNT_HISTORY_LINES = 10
 
 
 
@@ -73,8 +73,8 @@ function show_events(jsonEvents) {
     descriptionAddButton.innerHTML = "Test description only";
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";
-    descriptionAddButton.formTarget = "blank";
-    descriptionAddButton.onclick = function() {openEditing(jsonEvents[i].id)};
+    // descriptionAddButton.formTarget = "blank";
+    descriptionAddButton.onclick = function() {openEditing(i, jsonEvents[i].id)};
 
     let frameButton = document.createElement("td");
     frameButton.append(descriptionAddButton);
@@ -94,6 +94,10 @@ function show_events(jsonEvents) {
   }
 }
 
+function custom_sort(b, a) {
+  return new Date(a.timedetecting).getTime() - new Date(b.timedetecting).getTime();
+}
+
 function wrap() {
   $.ajax({
     url: "http://127.0.0.1:8000/main/Events/?format=json",
@@ -101,7 +105,13 @@ function wrap() {
     dataType: "json",
     async: false,
     success: function(data){
-        show_events(data);
+        // let jsonRes = data.sort(((obj1, obj2) => -(obj2.detectingtime - obj1.detectingtime)));
+        // console.log(jsonRes);
+        
+        // jsonRes = data.sort(custom_sort);
+        jsonRes = data.slice(data.length - 15, data.length);
+
+        show_events(jsonRes);
     }
   });
 }
@@ -109,10 +119,17 @@ function wrap() {
 wrap();
 
 
-function openEditing(id_clicked) {
-    localStorage.setItem("post", id_clicked);
+function openEditing(i, id_clicked) {
+    localStorage.setItem("post" + id_clicked, document.getElementById("post" + i).innerHTML);
+    localStorage.setItem("detect" + id_clicked, document.getElementById("detect" + i).innerHTML);
+    localStorage.setItem("fix" + id_clicked, document.getElementById("fix" + i).innerHTML);
+    localStorage.setItem("desc" + id_clicked, document.getElementById("desc" + i).innerHTML);
 
-    window.open("edit", '_blank');
+
+    // window.load
+    window.name = "edit/" + id_clicked;
+
+    window.open(window.name, '_blank');
 }
 
 

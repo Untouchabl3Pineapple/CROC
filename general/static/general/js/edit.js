@@ -56,17 +56,16 @@ function wrap_edit(jsonData) {
     timeDetectTd.className = "infoTd";
     timeFixTd.className = "infoTd";
 
-    // TODO 
-    // postTd.innerHTML = "test post";
-    postTd.innerHTML = localStorage.getItem("post");
-    timeDetectTd.innerHTML = "test time detect";
-    timeFixTd.innerHTML = "time fix test";
+    let hash = window.location.href.split("/")[6];
+    postTd.innerHTML = localStorage.getItem("post" + hash);
+    timeDetectTd.innerHTML = localStorage.getItem("detect" + hash);
+    timeFixTd.innerHTML = localStorage.getItem("fix" + hash);
 
     infoBodyRow.append(postTd);
     infoBodyRow.append(timeDetectTd);
     infoBodyRow.append(timeFixTd);
 
-
+    
 
     let descHead = document.createElement("span");
     descHead.className = "descHead";
@@ -74,11 +73,10 @@ function wrap_edit(jsonData) {
 
     let descInput = document.createElement("input");
     descInput.className = "descInput";
+    descInput.value = localStorage.getItem("desc" + hash);
 
     desc_div.append(descHead);
     desc_div.append(descInput);
-
-
 
     let typeHead = document.createElement("span");
     typeHead.innerHTML = "Тип происшествия";
@@ -89,7 +87,10 @@ function wrap_edit(jsonData) {
     let typeBody = document.createElement("tbody");
     typeTable.append(typeBody);
 
-    for (let i = 0; i < 2; i++) {      let typeRow = document.createElement("tr");
+    let active_button = "null";
+
+    for (let i = 0; i < 2; i++) {      
+      let typeRow = document.createElement("tr");
       typeBody.append(typeRow);
       for (let j = 0; j < 3; j++) {
         let typeTd = document.createElement("td");
@@ -104,10 +105,12 @@ function wrap_edit(jsonData) {
             for (let k = 0; k < 6; k++) {
               if (k.toString() != this.id) {
                 document.getElementById(k.toString()).className = "tdButton";
+                active_button = k;
               }
             }
           } else {
             this.className = "tdButton";
+            active_button = "null";
           }
         }
         tdButton.innerHTML = tdButton.id;
@@ -127,6 +130,10 @@ function wrap_edit(jsonData) {
     let buttonSave = document.createElement("button");
     buttonSave.className = "buttonSave";
     buttonSave.innerHTML = "Сохранить";
+    buttonSave.onclick = function() {
+        save_info(descInput.value, hash, active_button);
+
+    }
 
     let buttonCancel = document.createElement("button");
     buttonCancel.className = "buttonCancel";
@@ -139,20 +146,64 @@ function wrap_edit(jsonData) {
   }
 
 
-
-
-
-
 wrap_edit();
 
 
+function getCookie(name) {
+    let cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+
+    return cookieValue;
+}
 
 
 
 
+function save_info(desc, uuid, active_button) {
 
-function save_info() {
+    console.log(desc);
+    console.log(uuid);
 
+    const csrftoken = getCookie("csrftoken");
+    let headers = {"X-CSRFToken": csrftoken}
+    
+    $.ajax({
+        url: "http://127.0.0.1:8000/main/Events/" + uuid + "/?format=json",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function(data){
+            let kekw = {
+                "id": uuid,
+                "buttonevent": data.buttonevent,
+                // "eventtype": active_button,  
+                "detectingtime": data.detectingtime,
+                "timeupdate": data.timeupdate,
+                "eventdescription": desc,
+            };
+            let temp = JSON.stringify(kekw);
+            $.ajax({
+                url: "http://127.0.0.1:8000/main/Events/" + uuid + "/",
+                data: temp,
+                headers: headers,
+                method: "put",
+                contentType: "application/json",
+                dataType: "json",
+                async: false,
+            });
+        }
+    });
 }
 
 

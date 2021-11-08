@@ -87,8 +87,8 @@ function pressAllButtons(event) {
         async: false,
         success: function(data){
             for (let i = 0; i < data.length; ++i) {
-                dbPostButtonsEvents(buttonColor, data[i].leftside)
-                dbPostButtonsEvents(buttonColor, data[i].rightside)
+                if (data[i].leftcolor != buttonColor) {dbPostButtonsEvents(buttonColor, data[i].leftside);}
+                if (data[i].rightcolor != buttonColor) {dbPostButtonsEvents(buttonColor, data[i].rightside);}
             }
             postHTML();
             client.send("UPDATE BOARD");

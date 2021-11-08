@@ -5,6 +5,10 @@ import operator
 import bs4
 from .models import *
 from rest_framework import viewsets
+# from rest_framework import api_view
+from rest_framework.decorators import api_view
+# from rest_framework.parsers import JSONParser
+
 from .serializers import (
     ButtonsEventsSerializer,
     ButtonsPostsSerializer,
@@ -12,6 +16,10 @@ from .serializers import (
     EventsTypesSerializer,
     UsersSerializer,
 )
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def put_by_key(request, pk):
+    pass
 
 
 def general(request):
@@ -22,7 +30,7 @@ def emulator(request):
     return render(request, "general/emulator.html")
 
 
-def edit(request):
+def edit(request, project_id='None'):
     return render(request, "general/edit.html")
 
 
@@ -51,3 +59,4 @@ class EventsTypesViewSet(viewsets.ModelViewSet):
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
+
