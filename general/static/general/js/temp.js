@@ -103,7 +103,7 @@ function update() {
         method: "get",
         dataType: "json",
         async: false,
-        success: function(data){
+        success: function(data) {
             let jsonRes = data.sort(((obj1, obj2) => obj1.post - obj2.post));
             checkMove(jsonRes);
         }

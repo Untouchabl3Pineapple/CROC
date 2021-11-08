@@ -5,7 +5,7 @@ const COUNT_HISTORY_LINES = 10
 
 
 
-function show_events(jsonEvents) {
+function show_events_temp(jsonEvents) {
   let eventsDiv = document.createElement("div");
   eventsDiv.id = "eventdiv";
   eventsDiv.className = "eventDiv";
@@ -69,34 +69,146 @@ function show_events(jsonEvents) {
     eventsBodyRowNum.append(typeEvent);
 
     let descriptionAddButton = document.createElement("button");
-    descriptionAddButton.innerHTML = jsonEvents[i].eventdescription;
-    descriptionAddButton.innerHTML = "Test description only";
+
+    if (jsonEvents[i].eventdescription == null) {
+      descriptionAddButton.innerHTML = "-";
+    } else {
+      descriptionAddButton.innerHTML = jsonEvents[i].eventdescription;
+    }
+
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";
-    // descriptionAddButton.formTarget = "blank";
-    descriptionAddButton.onclick = function() {openEditing(i, jsonEvents[i].id)};
 
     let frameButton = document.createElement("td");
     frameButton.append(descriptionAddButton);
+    frameButton.className = "frameButtonDesc";
     eventsBodyRowNum.append(frameButton);
 
     let timeDetection = document.createElement("td");
-    timeDetection.innerHTML = jsonEvents[i].detectingtime;
+    timeDetection.innerHTML = jsonEvents[i].detectingtime.split(".")[0].split("T")[0] + "\n" + jsonEvents[i].detectingtime.split(".")[0].split("T")[1];
+
     timeDetection.className = "eventsTd";
     timeDetection.id = "detect" + i;
     eventsBodyRowNum.append(timeDetection);
 
     let timeFixing = document.createElement("td");
-    timeFixing.innerHTML = jsonEvents[i].fixingtime;
     timeFixing.className = "eventsTd";
+    if (jsonEvents[i].fixingtime == null) {
+      timeFixing.innerHTML = "-";
+    } else {
+      timeFixing.innerHTML = jsonEvents[i].fixingtime;
+    }
     timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
+
+
+
+    let editTd = document.createElement("td");
+    editTd.className = "editTd";
+    let editButton = document.createElement("button");
+    editButton.id = "edit" + i;
+    editButton.className = "far fa-edit";
+    editButton.onclick = function() {openEditing(i, jsonEvents[i].id)};
+    editTd.append(editButton);
+    eventsBodyRowNum.append(editTd);
   }
 }
 
-function custom_sort(b, a) {
-  return new Date(a.timedetecting).getTime() - new Date(b.timedetecting).getTime();
+
+
+
+function loadNewInform_temp(eventTypesJson) {
+  for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
+    let rowTemp = document.getElementById("eventsBodyRowNum" + i);
+
+
+    let postNum = document.createElement("td");
+    postNum.innerHTML = i;
+    postNum.className = "eventsTd";
+    postNum.id = "post" + i;
+    rowTemp.append(postNum);
+
+    let typeEvent = document.createElement("td");   
+    typeEvent.id = "type_event" + i; 
+    typeEvent.className = "typeEvent";
+    typeEvent.innerHTML = "test";
+    // typeEvent.innerHTML = eventTypesJson[0].eventtype;
+    
+    rowTemp.append(typeEvent);
+
+    let descriptionAddButton = document.createElement("button");
+
+    if (eventTypesJson[i].eventdescription == null) {
+      descriptionAddButton.innerHTML = "-";
+    } else {
+      descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription;
+    }
+
+    descriptionAddButton.id = "desc" + i;
+    descriptionAddButton.className = "descriptionButton";
+
+    let frameButton = document.createElement("td");
+    frameButton.append(descriptionAddButton);
+    frameButton.className = "frameButtonDesc";
+    rowTemp.append(frameButton);
+
+    let timeDetection = document.createElement("td");
+
+    if (timeDetection.innerHTML.indexOf("." > -1)) {
+      timeDetection.innerHTML = eventTypesJson[i].detectingtime.split(".")[0].split("T")[0] + "\n" + eventTypesJson[i].detectingtime.split(".")[0].split("T")[1];
+    } else {
+      timeDetection.innerHTML = eventTypesJson[i].detectingtime;
+    }
+
+    timeDetection.className = "eventsTd";
+    timeDetection.id = "detect" + i;
+    rowTemp.append(timeDetection);
+
+    let timeFixing = document.createElement("td");
+    timeFixing.className = "eventsTd";
+    if (eventTypesJson[i].fixingtime == null) {
+      timeFixing.innerHTML = "-";
+    } else {
+      timeFixing.innerHTML = eventTypesJson[i].fixingtime;
+    }
+    timeFixing.id = "fix" + i;
+    rowTemp.append(timeFixing);
+
+
+
+    let editTd = document.createElement("td");
+    editTd.className = "editTd";
+    let editButton = document.createElement("button");
+    editButton.id = "edit" + i;
+    editButton.className = "far fa-edit";
+    editButton.onclick = function() {openEditing(i, eventTypesJson[i].id)};
+    editTd.append(editButton);
+    rowTemp.append(editTd);
+  }
 }
+
+
+function clearButtons_temp() {
+  $('.eventsTd').remove();
+  $('.typeEvent').remove();
+  $('.frameButtonDesc').remove();
+  $('.editTd').remove();
+  $('.descriptionButton').remove();
+  $('.far fa-edit').remove();
+
+}   
+
+
+function checkMoves(jsonRes) {
+  if (document.getElementsByClassName("eventDiv").length != 0) {
+      clearButtons_temp();
+      loadNewInform_temp(jsonRes);
+  }
+  else {
+    show_events_temp(jsonRes);
+  }
+}   
+
 
 function wrap() {
   $.ajax({
@@ -105,19 +217,23 @@ function wrap() {
     dataType: "json",
     async: false,
     success: function(data){
-        // let jsonRes = data.sort(((obj1, obj2) => -(obj2.detectingtime - obj1.detectingtime)));
-        // console.log(jsonRes);
-        
-        // jsonRes = data.sort(custom_sort);
-        jsonRes = data.slice(data.length - 15, data.length);
+        // console.log(data.slice(-10));
 
-        show_events(jsonRes);
+        console.log(new Date(data[0].detectingtime));
+
+        let jsonRes = data.sort(function(a, b) {
+            let dateA = new Date(a.detectingtime), dateB = new Date(b.detectingtime);
+            return dateB - dateA;
+        });
+
+        console.log(jsonRes);
+        checkMoves(jsonRes);
+        // show_events(jsonRes);
     }
   });
 }
 
 wrap();
-
 
 function openEditing(i, id_clicked) {
     localStorage.setItem("post" + id_clicked, document.getElementById("post" + i).innerHTML);
@@ -126,10 +242,10 @@ function openEditing(i, id_clicked) {
     localStorage.setItem("desc" + id_clicked, document.getElementById("desc" + i).innerHTML);
 
 
-    // window.load
     window.name = "edit/" + id_clicked;
 
-    window.open(window.name, '_blank');
+    // window.open(window.name "_blank");
+    window.location.href = window.name;
 }
 
 

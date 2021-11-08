@@ -54,6 +54,7 @@ function colorsSwitcher(event) {
 
         // message to the server
         client.send("UPDATE BOARD");
+        // client.send("UPDATE EVENTS");
     }
 }
 
@@ -77,8 +78,8 @@ function pressAllButtons(event) {
     let buttonId = event.target.id;
     let buttonColor;
 
-    if (buttonId == "buttonStart") { buttonColor = YELLOW_COLOR }
-    else { buttonColor = GREEN_COLOR }
+    if (buttonId == "buttonStart") { buttonColor = YELLOW_COLOR; }
+    else { buttonColor = GREEN_COLOR; }
 
     $.ajax({
         url: "http://127.0.0.1:8000/main/ButtonsPosts/?format=json",
@@ -97,7 +98,8 @@ function pressAllButtons(event) {
 }
 
 update();
-let client = new WebSocket("ws://localhost:8080");
+let client = new WebSocket("ws://localhost:8001");
+console.log(client)
 
 client.onopen = () => {
     postHTML()

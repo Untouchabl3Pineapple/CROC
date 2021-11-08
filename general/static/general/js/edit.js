@@ -73,7 +73,13 @@ function wrap_edit(jsonData) {
 
     let descInput = document.createElement("input");
     descInput.className = "descInput";
-    descInput.value = localStorage.getItem("desc" + hash);
+
+    if (localStorage.getItem("desc" + hash) != "-") {
+      descInput.value = localStorage.getItem("desc" + hash);
+    } else {
+      descInput.value = "";
+    }
+
 
     desc_div.append(descHead);
     desc_div.append(descInput);
@@ -118,7 +124,6 @@ function wrap_edit(jsonData) {
 
       
         typeTd.className = "typeTd";
-        // TODO
         typeRow.append(typeTd);
       }
     }
@@ -132,12 +137,15 @@ function wrap_edit(jsonData) {
     buttonSave.innerHTML = "Сохранить";
     buttonSave.onclick = function() {
         save_info(descInput.value, hash, active_button);
-
     }
 
     let buttonCancel = document.createElement("button");
     buttonCancel.className = "buttonCancel";
     buttonCancel.innerHTML = "Отмена";
+
+    buttonCancel.onclick = function() {
+      cancel();
+    }
 
     buttons_div.append(buttonCancel);
     buttons_div.append(buttonSave);
@@ -146,7 +154,13 @@ function wrap_edit(jsonData) {
   }
 
 
+
+
 wrap_edit();
+
+
+
+
 
 
 function getCookie(name) {
@@ -171,7 +185,6 @@ function getCookie(name) {
 
 
 function save_info(desc, uuid, active_button) {
-
     console.log(desc);
     console.log(uuid);
 
@@ -202,11 +215,13 @@ function save_info(desc, uuid, active_button) {
                 dataType: "json",
                 async: false,
             });
+
+            window.location.href = "http://127.0.0.1:8000/main/monitoring";
         }
     });
 }
 
 
-function delete_info() {
-
+function cancel() {
+    window.location.href = "http://127.0.0.1:8000/main/monitoring";
 }

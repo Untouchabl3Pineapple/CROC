@@ -5,6 +5,7 @@
     width: 90%;
     text-align: center;
     margin-top: 10%;
+    margin-bottom: 2%;
     margin-left: 5%;
 }
 
@@ -65,6 +66,14 @@
 .eventsBodyRowEven {
     background-color: white;
 }
+
+/* .editTd {
+
+}
+
+.frameButtonDesc {
+
+} */
 
 /* 
 .eventsTable {
