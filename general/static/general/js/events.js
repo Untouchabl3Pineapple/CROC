@@ -1,9 +1,19 @@
-const HEADS = 5
-const HEAD = ["№ Поста", "Тип происшествия", "Описание", "Время фиксации", "Время устранения"];
-const COLUMN_WIDTH = ["width: 10%", "width: 20%", "width: 40%", "width: 15%", "width: 15%"]
-const COUNT_HISTORY_LINES = 10
-
-
+const HEADS = 5;
+const HEAD = [
+  "№ Поста",
+  "Тип происшествия",
+  "Описание",
+  "Время фиксации",
+  "Время устранения",
+];
+const COLUMN_WIDTH = [
+  "width: 10%",
+  "width: 20%",
+  "width: 40%",
+  "width: 15%",
+  "width: 15%",
+];
+const COUNT_HISTORY_LINES = 10;
 
 function show_events_temp(jsonEvents) {
   let eventsDiv = document.createElement("div");
@@ -42,17 +52,16 @@ function show_events_temp(jsonEvents) {
     method: "get",
     dataType: "json",
     async: false,
-    success: function(data) {
-      eventTypesJson = data
-    }
+    success: function (data) {
+      eventTypesJson = data;
+    },
   });
 
   for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
     let eventsBodyRowNum = document.createElement("tr");
-    eventsBodyRowNum.id =  "eventsBodyRowNum" + i;
+    eventsBodyRowNum.id = "eventsBodyRowNum" + i;
     eventsTBody.append(eventsBodyRowNum);
 
-   
     eventsBodyRowNum.className = "eventsBodyRowOdd";
 
     let postNum = document.createElement("td");
@@ -61,11 +70,11 @@ function show_events_temp(jsonEvents) {
     postNum.id = "post" + i;
     eventsBodyRowNum.append(postNum);
 
-    let typeEvent = document.createElement("td");   
-    typeEvent.id = "type_event" + i; 
+    let typeEvent = document.createElement("td");
+    typeEvent.id = "type_event" + i;
     typeEvent.className = "typeEvent";
     typeEvent.innerHTML = eventTypesJson[0].eventtype;
-    
+
     eventsBodyRowNum.append(typeEvent);
 
     let descriptionAddButton = document.createElement("button");
@@ -85,7 +94,10 @@ function show_events_temp(jsonEvents) {
     eventsBodyRowNum.append(frameButton);
 
     let timeDetection = document.createElement("td");
-    timeDetection.innerHTML = jsonEvents[i].detectingtime.split(".")[0].split("T")[0] + "\n" + jsonEvents[i].detectingtime.split(".")[0].split("T")[1];
+    timeDetection.innerHTML =
+      jsonEvents[i].detectingtime.split(".")[0].split("T")[0] +
+      "\n" +
+      jsonEvents[i].detectingtime.split(".")[0].split("T")[1];
 
     timeDetection.className = "eventsTd";
     timeDetection.id = "detect" + i;
@@ -101,26 +113,22 @@ function show_events_temp(jsonEvents) {
     timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
 
-
-
     let editTd = document.createElement("td");
     editTd.className = "editTd";
     let editButton = document.createElement("button");
     editButton.id = "edit" + i;
     editButton.className = "far fa-edit";
-    editButton.onclick = function() {openEditing(i, jsonEvents[i].id)};
+    editButton.onclick = function () {
+      openEditing(i, jsonEvents[i].id);
+    };
     editTd.append(editButton);
     eventsBodyRowNum.append(editTd);
   }
 }
 
-
-
-
 function loadNewInform_temp(eventTypesJson) {
   for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
     let rowTemp = document.getElementById("eventsBodyRowNum" + i);
-
 
     let postNum = document.createElement("td");
     postNum.innerHTML = i;
@@ -128,12 +136,11 @@ function loadNewInform_temp(eventTypesJson) {
     postNum.id = "post" + i;
     rowTemp.append(postNum);
 
-    let typeEvent = document.createElement("td");   
-    typeEvent.id = "type_event" + i; 
+    let typeEvent = document.createElement("td");
+    typeEvent.id = "type_event" + i;
     typeEvent.className = "typeEvent";
     typeEvent.innerHTML = "test";
-    // typeEvent.innerHTML = eventTypesJson[0].eventtype;
-    
+
     rowTemp.append(typeEvent);
 
     let descriptionAddButton = document.createElement("button");
@@ -155,7 +162,10 @@ function loadNewInform_temp(eventTypesJson) {
     let timeDetection = document.createElement("td");
 
     if (timeDetection.innerHTML.indexOf("." > -1)) {
-      timeDetection.innerHTML = eventTypesJson[i].detectingtime.split(".")[0].split("T")[0] + "\n" + eventTypesJson[i].detectingtime.split(".")[0].split("T")[1];
+      timeDetection.innerHTML =
+        eventTypesJson[i].detectingtime.split(".")[0].split("T")[0] +
+        "\n" +
+        eventTypesJson[i].detectingtime.split(".")[0].split("T")[1];
     } else {
       timeDetection.innerHTML = eventTypesJson[i].detectingtime;
     }
@@ -175,40 +185,62 @@ function loadNewInform_temp(eventTypesJson) {
     rowTemp.append(timeFixing);
 
 
-
     let editTd = document.createElement("td");
+
+
     editTd.className = "editTd";
     let editButton = document.createElement("button");
     editButton.id = "edit" + i;
     editButton.className = "far fa-edit";
-    editButton.onclick = function() {openEditing(i, eventTypesJson[i].id)};
+    editButton.onclick = function () {
+      openEditing(i, eventTypesJson[i].id);
+    };
     editTd.append(editButton);
+
     rowTemp.append(editTd);
   }
 }
 
-
 function clearButtons_temp() {
-  $('.eventsTd').remove();
-  $('.typeEvent').remove();
-  $('.frameButtonDesc').remove();
-  $('.editTd').remove();
-  $('.descriptionButton').remove();
-  $('.far fa-edit').remove();
-
-}   
-
+  $(".eventsTd").remove();
+  $(".typeEvent").remove();
+  $(".frameButtonDesc").remove();
+  $(".editTd").remove();
+  $(".descriptionButton").remove();
+  $(".far fa-edit").remove();
+}
 
 function checkMoves(jsonRes) {
   if (document.getElementsByClassName("eventDiv").length != 0) {
-      clearButtons_temp();
-      loadNewInform_temp(jsonRes);
-  }
-  else {
+    clearButtons_temp();
+    loadNewInform_temp(jsonRes);
+  } else {
     show_events_temp(jsonRes);
   }
-}   
+}
 
+function openEditing(i, id_clicked) {
+  localStorage.setItem(
+    "post" + id_clicked,
+    document.getElementById("post" + i).innerHTML
+  );
+  localStorage.setItem(
+    "detect" + id_clicked,
+    document.getElementById("detect" + i).innerHTML
+  );
+  localStorage.setItem(
+    "fix" + id_clicked,
+    document.getElementById("fix" + i).innerHTML
+  );
+  localStorage.setItem(
+    "desc" + id_clicked,
+    document.getElementById("desc" + i).innerHTML
+  );
+
+  window.name = "edit/" + id_clicked;
+
+  window.location.href = window.name;
+}
 
 function wrap() {
   $.ajax({
@@ -216,36 +248,18 @@ function wrap() {
     method: "get",
     dataType: "json",
     async: false,
-    success: function(data){
-        // console.log(data.slice(-10));
+    success: function (data) {
 
-        console.log(new Date(data[0].detectingtime));
+      console.log(new Date(data[0].detectingtime));
 
-        let jsonRes = data.sort(function(a, b) {
-            let dateA = new Date(a.detectingtime), dateB = new Date(b.detectingtime);
-            return dateB - dateA;
-        });
+      let jsonRes = data.sort(function (a, b) {
+        let dateA = new Date(a.detectingtime),
+          dateB = new Date(b.detectingtime);
+        return dateB - dateA;
+      });
 
-        console.log(jsonRes);
-        checkMoves(jsonRes);
-        // show_events(jsonRes);
-    }
+      console.log(jsonRes);
+      checkMoves(jsonRes);
+    },
   });
 }
-
-wrap();
-
-function openEditing(i, id_clicked) {
-    localStorage.setItem("post" + id_clicked, document.getElementById("post" + i).innerHTML);
-    localStorage.setItem("detect" + id_clicked, document.getElementById("detect" + i).innerHTML);
-    localStorage.setItem("fix" + id_clicked, document.getElementById("fix" + i).innerHTML);
-    localStorage.setItem("desc" + id_clicked, document.getElementById("desc" + i).innerHTML);
-
-
-    window.name = "edit/" + id_clicked;
-
-    // window.open(window.name "_blank");
-    window.location.href = window.name;
-}
-
-

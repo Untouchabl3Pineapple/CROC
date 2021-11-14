@@ -15,8 +15,18 @@
       <img src="{% static 'general/img/CompanyLogo.png' %}" alt="CompanyLogo" />
       <ul>
         <li><a href="/products">Мониторинг</a></li>
-        <li><a href="/services">Администрирование</a></li>
-        <li class="end_elem"><a href="/login">Выход</a></li>
+
+        {% if request.user.is_authenticated and request.user.is_staff %}
+          <li><a href="/services">Администрирование</a></li>
+        {% endif %}
+        <!-- <li class="end_elem"><a href="/login">Выход</a></li> -->
+
+        {% if user.is_authenticated %}
+        <li>User: {{ user.get_username}}</li>
+        <li class="end_elem"><a href="{% url 'logout'%}?next={{request.path}}">Выход</a></li>
+        {% else %}
+        <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        {% endif %} 
       </ul>
     </div>
 
