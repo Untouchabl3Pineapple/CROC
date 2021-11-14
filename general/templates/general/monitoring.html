@@ -12,24 +12,14 @@
 {% endblock %}
 
 {% block body %}
-<script src={% static "general/js/temp.js" %}></script>
 <script src={% static "general/js/board.js" %}></script>
-<script src={% static "general/js/events.js" %}></script>
 
-<!-- <button class="hardButton" alt="Кнопка ручного режима" onclick="testFrame()">Ручной режим</button> -->
+{% if request.user.is_authenticated and request.user.is_staff %}
+    <script src={% static "general/js/events.js" %}></script>
+{% else %} 
+    <script src={% static "general/js/events_user.js" %}></script>
+{% endif %}
 
-
-<!-- Временная кнопка -->
-<!-- <span
-    class="kekw"
-    style="cursor: pointer; text-decoration: underline; color: white"
-    onclick="update()">
-        Обновить данные
-</span> -->
-
-
-
-
-<!-- Твой код стартует тут -->
+<script src={% static "general/js/monitoring_client.js" %}></script>
 
 {% endblock %}

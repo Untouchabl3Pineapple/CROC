@@ -11,8 +11,9 @@
 {% endblock %}
 
 {% block body %}
-<script src={% static "general/js/temp.js" %}></script>
+<script src={% static "general/js/board.js" %}></script>
 <script src={% static "general/js/emulator.js" %}></script>
+<script src={% static "general/js/emulator_client.js" %}></script>
 
 <button id="buttonStart" class="buttonMove" name="buttonStart" style="background-color: rgb(251, 255, 16)" onclick=pressAllButtons(event)>Рабочий день начался</button>
 <button id="buttonEnd" class="buttonMove" name="buttonEnd" style="background-color: rgb(16, 255, 36)" onclick=pressAllButtons(event)>Рабочий день окончен</button>
