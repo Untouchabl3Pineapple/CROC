@@ -19,13 +19,12 @@
         {% if request.user.is_authenticated and request.user.is_staff %}
           <li><a href="/services">Администрирование</a></li>
         {% endif %}
-        <!-- <li class="end_elem"><a href="/login">Выход</a></li> -->
 
         {% if user.is_authenticated %}
-        <li>User: {{ user.get_username}}</li>
-        <li class="end_elem"><a href="{% url 'logout'%}?next={{request.path}}">Выход</a></li>
+        <li style="margin-left:90%; margin-top:2px; color:white;">{{ user.get_username}}</li>
+        <li style="margin-left:10%;" class="end_elem"> <a href="{% url 'login'%}?next={{request.path}}">Выход</a></li>
         {% else %}
-        <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        <li style="margin-left:90%;"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
         {% endif %} 
       </ul>
     </div>

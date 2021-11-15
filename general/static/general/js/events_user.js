@@ -1,4 +1,4 @@
-const HEADS = 5;
+const HEADS = 5 ;
 const HEAD = [
   "№ Поста",
   "Тип происшествия",
@@ -7,7 +7,7 @@ const HEAD = [
   "Время устранения",
 ];
 const COLUMN_WIDTH = [
-  "width: 10%",
+  "width: 10%", 
   "width: 20%",
   "width: 40%",
   "width: 15%",
@@ -36,8 +36,8 @@ function show_events_temp(jsonEvents) {
   for (let i = 0; i < HEADS; i++) {
     let eventsHeadNum = document.createElement("td");
     eventsHeadNum.id = "evnetsHeadNum" + i;
-    eventsHeadNum.className = "eventsHeadTd";
     eventsHeadNum.style = COLUMN_WIDTH[i];
+    eventsHeadNum.className = "eventsHeadTd";
     eventsHeadNum.innerHTML = HEAD[i];
     eventsHeadRow.append(eventsHeadNum);
   }
@@ -77,7 +77,7 @@ function show_events_temp(jsonEvents) {
 
     eventsBodyRowNum.append(typeEvent);
 
-    let descriptionAddButton = document.createElement("button");
+    let descriptionAddButton = document.createElement("td");
 
     if (jsonEvents[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
@@ -87,16 +87,12 @@ function show_events_temp(jsonEvents) {
 
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";
+    eventsBodyRowNum.append(descriptionAddButton);
 
-    let frameButton = document.createElement("td");
-    frameButton.append(descriptionAddButton);
-    frameButton.className = "frameButtonDesc";
-    eventsBodyRowNum.append(frameButton);
 
     let timeDetection = document.createElement("td");
     timeDetection.innerHTML =
-      jsonEvents[i].detectingtime.split(".")[0].split("T")[0] +
-      "\n" +
+      jsonEvents[i].detectingtime.split(".")[0].split("T")[0] + "\n" +
       jsonEvents[i].detectingtime.split(".")[0].split("T")[1];
 
     timeDetection.className = "eventsTd";
@@ -112,8 +108,6 @@ function show_events_temp(jsonEvents) {
     }
     timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
-
-  
   }
 }
 
@@ -134,21 +128,17 @@ function loadNewInform_temp(eventTypesJson) {
 
     rowTemp.append(typeEvent);
 
-    let descriptionAddButton = document.createElement("button");
-
+    
+    let descriptionAddButton = document.createElement("td");
     if (eventTypesJson[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
     } else {
       descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription;
     }
-
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";
+    rowTemp.append(descriptionAddButton);
 
-    let frameButton = document.createElement("td");
-    frameButton.append(descriptionAddButton);
-    frameButton.className = "frameButtonDesc";
-    rowTemp.append(frameButton);
 
     let timeDetection = document.createElement("td");
 

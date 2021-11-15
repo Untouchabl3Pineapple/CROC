@@ -108,3 +108,85 @@ function placeButtons() {
         " class=bottomButton onclick=colorsSwitcher(event)> </button>";
     }
   }
+
+
+
+//   -- Удаление триггера T1
+// DROP TRIGGER IF EXISTS T1 ON ButtonsEvents;
+
+// -- Удаление функции InsertInEvents()
+// DROP FUNCTION IF EXISTS InsertInEvents();
+
+// -- Создание функции InsertInEvents()
+// CREATE OR REPLACE FUNCTION InsertInEvents()
+// RETURNS TRIGGER
+// AS $$
+// BEGIN
+//     IF NEW.buttoncolor = 1 THEN
+//         INSERT INTO Events (ID, ButtonEvent_ID)
+//         VALUES             (gen_random_uuid(), NEW.ID);
+//     END IF;
+	
+// 	IF NEW.buttoncolor = 2 THEN
+// 		UPDATE Events
+//         SET fixingtime=current_timestamp
+// 		WHERE ButtonEvent_ID=NEW.id;
+// 	END IF;
+
+//     RETURN NULL;
+// END;
+// $$ LANGUAGE PLPGSQL;
+
+// /*
+//     Создание триггера T1, который реагирует на нажатие кнопки
+//     и заносит информацию в Events
+// */
+// CREATE TRIGGER T1
+// AFTER INSERT ON ButtonsEvents FOR EACH ROW
+// EXECUTE PROCEDURE InsertInEvents();
+
+// // f2659679-5789-40d9-8bde-eaa61856f507
+
+
+// select number
+// from buttonsevents be join events e on e.buttonevent_id=be.id
+// where be.id='f2659679-5789-40d9-8bde-eaa61856f507'
+
+
+
+
+// -- Удаление триггера T1
+// DROP TRIGGER IF EXISTS T1 ON ButtonsEvents;
+
+// -- Удаление функции InsertInEvents()
+// DROP FUNCTION IF EXISTS InsertInEvents();
+
+// -- Создание функции InsertInEvents()
+// CREATE OR REPLACE FUNCTION InsertInEvents()
+// RETURNS TRIGGER
+// AS $$
+// BEGIN
+//     IF NEW.buttoncolor = 1 THEN
+//         INSERT INTO Events (ID, ButtonEvent_ID)
+//         VALUES             (gen_random_uuid(), NEW.ID);
+//     END IF;
+	
+// 	IF NEW.buttoncolor = 2 THEN
+// 		UPDATE Events
+//         SET fixingtime=current_timestamp
+// 		WHERE ButtonEvent_ID=(select number
+// 								from buttonsevents be join events e on e.buttonevent_id=be.id
+// 								where be.id=NEW.id);
+// 	END IF;
+
+//     RETURN NULL;
+// END;
+// $$ LANGUAGE PLPGSQL;
+
+// /*
+//     Создание триггера T1, который реагирует на нажатие кнопки
+//     и заносит информацию в Events
+// */
+// CREATE TRIGGER T1
+// AFTER INSERT ON ButtonsEvents FOR EACH ROW
+// EXECUTE PROCEDURE InsertInEvents();
