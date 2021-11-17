@@ -31,4 +31,5 @@ urlpatterns = [
     path("monitoring/", views.general, name="home"),
     path("emulator/", views.emulator, name="emulator"),
     path("monitoring/edit/<project_id>/", views.edit, name="edit"),
+    path("buttons/", views.buttons, name="buttons"),
 ]

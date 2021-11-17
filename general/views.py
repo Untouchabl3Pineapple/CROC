@@ -30,6 +30,10 @@ def emulator(request):
     return render(request, "general/emulator.html")
 
 
+def buttons(request):
+    return render(request, "general/buttons.html")
+
+
 def edit(request, project_id='None'):
     return render(request, "general/edit.html")
 

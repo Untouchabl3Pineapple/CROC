@@ -12,7 +12,6 @@
 {% endblock %}
 
 {% block body %}
-<script src={% static "general/js/board.js" %}></script>
 
 {% if request.user.is_authenticated and request.user.is_staff %}
     <script src={% static "general/js/events.js" %}></script>
@@ -20,6 +19,7 @@
     <script src={% static "general/js/events_user.js" %}></script>
 {% endif %}
 
+<script src={% static "general/js/board.js" %}></script>
 <script src={% static "general/js/monitoring_client.js" %}></script>
 
 {% endblock %}

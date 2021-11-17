@@ -9,7 +9,7 @@ body {
 }
 
 .menu {
-    background: linear-gradient(21deg, #dd03e4, #5611ec);
+    background: rgb(71, 71, 212);
     display: flex;
     padding: 15px;
 }

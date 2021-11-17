@@ -1,4 +1,4 @@
-const HEADS = 5 ;
+const HEADS = 5;
 const HEAD = [
   "№ Поста",
   "Тип происшествия",
@@ -7,13 +7,29 @@ const HEAD = [
   "Время устранения",
 ];
 const COLUMN_WIDTH = [
-  "width: 10%", 
+  "width: 10%",
   "width: 20%",
   "width: 40%",
   "width: 15%",
   "width: 15%",
 ];
 const COUNT_HISTORY_LINES = 10;
+
+function formatDate(date) {
+  return (
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1) +
+    "-" +
+    date.getDate() +
+    "\n" +
+    date.getHours() +
+    ":" +
+    date.getMinutes() +
+    ":" +
+    date.getSeconds()
+  );
+}
 
 function show_events_temp(jsonEvents) {
   let eventsDiv = document.createElement("div");
@@ -46,17 +62,6 @@ function show_events_temp(jsonEvents) {
   eventsTBody.className = "eventsTBody";
   eventsTable.append(eventsTBody);
 
-  let eventTypesJson;
-  $.ajax({
-    url: "http://127.0.0.1:8000/main/EventsTypes/?format=json",
-    method: "get",
-    dataType: "json",
-    async: false,
-    success: function (data) {
-      eventTypesJson = data;
-    },
-  });
-
   for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
     let eventsBodyRowNum = document.createElement("tr");
     eventsBodyRowNum.id = "eventsBodyRowNum" + i;
@@ -73,7 +78,14 @@ function show_events_temp(jsonEvents) {
     let typeEvent = document.createElement("td");
     typeEvent.id = "type_event" + i;
     typeEvent.className = "typeEvent";
-    typeEvent.innerHTML = eventTypesJson[0].eventtype;
+
+    if (jsonEvents[i].eventtype != null) {
+      $.getJSON(jsonEvents[i].eventtype, function(data) {
+        typeEvent.innerHTML = data.eventtype;   
+      });
+    } else {
+      typeEvent.innerHTML = "-";
+    }
 
     eventsBodyRowNum.append(typeEvent);
 
@@ -89,11 +101,14 @@ function show_events_temp(jsonEvents) {
     descriptionAddButton.className = "descriptionButton";
     eventsBodyRowNum.append(descriptionAddButton);
 
-
     let timeDetection = document.createElement("td");
-    timeDetection.innerHTML =
-      jsonEvents[i].detectingtime.split(".")[0].split("T")[0] + "\n" +
-      jsonEvents[i].detectingtime.split(".")[0].split("T")[1];
+
+    let detect = new Date(jsonEvents[i].detectingtime);
+    let res_dect = new Date(
+      detect.getTime() - detect.getTimezoneOffset() * 60 * 1000
+    );
+
+    timeDetection.innerHTML = formatDate(res_dect);
 
     timeDetection.className = "eventsTd";
     timeDetection.id = "detect" + i;
@@ -104,11 +119,16 @@ function show_events_temp(jsonEvents) {
     if (jsonEvents[i].fixingtime == null) {
       timeFixing.innerHTML = "-";
     } else {
-      timeFixing.innerHTML = jsonEvents[i].fixingtime;
+      let fixing = new Date(jsonEvents[i].fixingtime);
+      let res_fixing = new Date(
+        fixing.getTime() - fixing.getTimezoneOffset() * 60 * 1000
+      );
+
+      timeFixing.innerHTML = formatDate(res_fixing);
     }
     timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
-  }
+}
 }
 
 function loadNewInform_temp(eventTypesJson) {
@@ -124,11 +144,17 @@ function loadNewInform_temp(eventTypesJson) {
     let typeEvent = document.createElement("td");
     typeEvent.id = "type_event" + i;
     typeEvent.className = "typeEvent";
-    typeEvent.innerHTML = "test";
+
+    if (eventTypesJson[i].eventtype != null) {
+      $.getJSON(eventTypesJson[i].eventtype, function(data) {
+        typeEvent.innerHTML = data.eventtype;   
+      });
+    } else {
+      typeEvent.innerHTML = "-";
+    }
 
     rowTemp.append(typeEvent);
 
-    
     let descriptionAddButton = document.createElement("td");
     if (eventTypesJson[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
@@ -139,32 +165,34 @@ function loadNewInform_temp(eventTypesJson) {
     descriptionAddButton.className = "descriptionButton";
     rowTemp.append(descriptionAddButton);
 
-
     let timeDetection = document.createElement("td");
 
-    if (timeDetection.innerHTML.indexOf("." > -1)) {
-      timeDetection.innerHTML =
-        eventTypesJson[i].detectingtime.split(".")[0].split("T")[0] +
-        "\n" +
-        eventTypesJson[i].detectingtime.split(".")[0].split("T")[1];
-    } else {
-      timeDetection.innerHTML = eventTypesJson[i].detectingtime;
-    }
+    let detect = new Date(eventTypesJson[i].detectingtime);
+    let res_dect = new Date(
+      detect.getTime() - detect.getTimezoneOffset() * 60 * 1000
+    );
+
+    timeDetection.innerHTML = formatDate(res_dect);
 
     timeDetection.className = "eventsTd";
     timeDetection.id = "detect" + i;
     rowTemp.append(timeDetection);
 
     let timeFixing = document.createElement("td");
-    timeFixing.className = "eventsTd";
     if (eventTypesJson[i].fixingtime == null) {
       timeFixing.innerHTML = "-";
     } else {
-      timeFixing.innerHTML = eventTypesJson[i].fixingtime;
+      let fixing = new Date(eventTypesJson[i].fixingtime);
+      let res_fixing = new Date(
+        fixing.getTime() - fixing.getTimezoneOffset() * 60 * 1000
+      );
+
+      timeFixing.innerHTML = formatDate(res_fixing);
     }
+
+    timeFixing.className = "eventsTd";
     timeFixing.id = "fix" + i;
     rowTemp.append(timeFixing);
-
   }
 }
 
@@ -213,9 +241,8 @@ function wrap() {
     url: "http://127.0.0.1:8000/main/Events/?format=json",
     method: "get",
     dataType: "json",
-    async: false,
+    async: true,
     success: function (data) {
-
       console.log(new Date(data[0].detectingtime));
 
       let jsonRes = data.sort(function (a, b) {

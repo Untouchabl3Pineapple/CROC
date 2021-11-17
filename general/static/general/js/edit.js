@@ -90,10 +90,24 @@ function wrap_edit(jsonData) {
   let typeBody = document.createElement("tbody");
   typeTable.append(typeBody);
 
+
   let active_button = "null";
 
-  for (let i = 0; i < 2; i++) {
+  let typesJson;
+  $.ajax({
+    url: "http://127.0.0.1:8000/main/EventsTypes/?format=json",
+    method: "get",
+    dataType: "json",
+    async: false,
+    success: function (temp) {
+      typesJson = temp;
+    },
+  });
+
+  let i;
+  for (i = 0; i < Math.floor(typesJson.length / 3); i++) {
     let typeRow = document.createElement("tr");
+    typeRow.className = "typeRow";
     typeBody.append(typeRow);
     for (let j = 0; j < 3; j++) {
       let typeTd = document.createElement("td");
@@ -101,28 +115,63 @@ function wrap_edit(jsonData) {
       let tdButton = document.createElement("button");
       tdButton.className = "tdButton";
       tdButton.id = i * 3 + j;
+      tdButton.innerHTML = typesJson[i * 3 + j].eventtype;
 
       tdButton.onclick = function () {
         if (this.className == "tdButton") {
           this.className = "tdButtonActivated";
-          for (let k = 0; k < 6; k++) {
+          for (let k = 0; k < typesJson.length; k++) {
             if (k.toString() != this.id) {
               document.getElementById(k.toString()).className = "tdButton";
-              active_button = k;
             }
           }
+          active_button = typesJson[this.id].id;
+          console.log("http://127.0.0.1:8000/main/EventsTypes/" + active_button + "/");
         } else {
           this.className = "tdButton";
           active_button = "null";
         }
       };
-      tdButton.innerHTML = tdButton.id;
       typeTd.append(tdButton);
 
       typeTd.className = "typeTd";
       typeRow.append(typeTd);
     }
   }
+
+
+  let typeRow = document.createElement("tr");
+  typeRow.className = "typeRow";
+  typeBody.append(typeRow);
+
+  for (let j = 0; j < typesJson.length % 3; j++) {
+    let typeTd = document.createElement("td");
+
+    let tdButton = document.createElement("button");
+    tdButton.className = "tdButton";
+    tdButton.id = i * 3 + j;
+    tdButton.innerHTML = typesJson[i * 3 + j].eventtype;
+
+    tdButton.onclick = function () {
+      if (this.className == "tdButton") {
+        this.className = "tdButtonActivated";
+        for (let k = 0; k < typesJson.length; k++) {
+          if (k.toString() != this.id) {
+            document.getElementById(k.toString()).className = "tdButton";
+          }
+        }
+        active_button = typesJson[this.id].id;
+      } else {
+        this.className = "tdButton";
+        active_button = "null";
+      }
+    };
+    typeTd.append(tdButton);
+
+    typeTd.className = "typeTd";
+    typeRow.append(typeTd);
+  }
+
 
   type_event_div.append(typeHead);
   type_event_div.append(typeTable);
@@ -169,6 +218,7 @@ function getCookie(name) {
 function save_info(desc, uuid, active_button) {
   console.log(desc);
   console.log(uuid);
+  let eventType = "http://127.0.0.1:8000/main/EventsTypes/" + active_button + "/";
 
   const csrftoken = getCookie("csrftoken");
   let headers = { "X-CSRFToken": csrftoken };
@@ -182,6 +232,7 @@ function save_info(desc, uuid, active_button) {
       let kekw = {
         id: uuid,
         buttonevent: data.buttonevent,
+        eventtype: eventType,
         detectingtime: data.detectingtime,
         timeupdate: data.timeupdate,
         eventdescription: desc,

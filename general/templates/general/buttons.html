@@ -1,0 +1,504 @@
+{% extends 'general/base.html' %}
+{% load static %}
+
+{% block title %}
+Эмулятор
+{% endblock %}
+
+{% block link %}
+<!-- <link rel="stylesheet" href="{% static 'general/css/monitoring.css' %}" />
+<link rel="stylesheet" href="{% static 'general/css/emulator.css' %}" /> -->
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<h2>Кнопки и посты</h2>
+
+<table class="table">
+    <tbody>
+        <tr class="font-weight-bold bg-light">
+            <td class="">Пост</td>
+            <td class="text-center">
+                13
+            </td>
+            <td class="text-center">
+                12
+            </td>
+            <td class="text-center">
+                11
+            </td>
+            <td class="text-center">
+                10
+            </td>
+            <td class="text-center">
+                9
+            </td>
+            <td class="text-center">
+                8
+            </td>
+            <td class="text-center">
+                7
+            </td>
+            <td class="text-center">
+                6
+            </td>
+            <td class="text-center">
+                5
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                0
+            </td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">
+                Правая сторона
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_13__1__ID" name="B[13][1].ID"
+                    type="hidden" value="48bd97f2-8e44-4ad7-818a-76959dc013c2">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_13__1__Post" name="B[13][1].Post"
+                    type="hidden" value="13">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_13__1__Side"
+                    name="B[13][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_12__1__Number" name="B[12][1].Number" type="number" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_12__1__ID" name="B[12][1].ID"
+                    type="hidden" value="cecf14b8-b724-420a-b94e-e6ecb5897b35">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_12__1__Post" name="B[12][1].Post"
+                    type="hidden" value="12">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_12__1__Side"
+                    name="B[12][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_11__1__Number" name="B[11][1].Number" type="number" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_11__1__ID" name="B[11][1].ID"
+                    type="hidden" value="bacfda53-6031-4085-a221-77f489ad290a">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_11__1__Post" name="B[11][1].Post"
+                    type="hidden" value="11">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_11__1__Side"
+                    name="B[11][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_10__1__Number" name="B[10][1].Number" type="number" value="17">
+                <input data-val="true" data-val-required="The ID field is required." id="B_10__1__ID" name="B[10][1].ID"
+                    type="hidden" value="3aaa79c8-3f38-43d0-ae39-40da8b22b9ac">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_10__1__Post" name="B[10][1].Post"
+                    type="hidden" value="10">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_10__1__Side"
+                    name="B[10][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_9__1__Number" name="B[9][1].Number" type="number" value="15">
+                <input data-val="true" data-val-required="The ID field is required." id="B_9__1__ID" name="B[9][1].ID"
+                    type="hidden" value="56669786-7e90-47bc-a5cd-7d185a5fdd8a">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_9__1__Post" name="B[9][1].Post"
+                    type="hidden" value="9">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_9__1__Side"
+                    name="B[9][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_8__1__Number" name="B[8][1].Number" type="number" value="13">
+                <input data-val="true" data-val-required="The ID field is required." id="B_8__1__ID" name="B[8][1].ID"
+                    type="hidden" value="9cba76e3-56db-44cb-99e3-7ea11f51c08d">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_8__1__Post" name="B[8][1].Post"
+                    type="hidden" value="8">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_8__1__Side"
+                    name="B[8][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_7__1__Number" name="B[7][1].Number" type="number" value="11">
+                <input data-val="true" data-val-required="The ID field is required." id="B_7__1__ID" name="B[7][1].ID"
+                    type="hidden" value="53964cbe-175b-4751-a053-595403c9ba2b">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_7__1__Post" name="B[7][1].Post"
+                    type="hidden" value="7">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_7__1__Side"
+                    name="B[7][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_6__1__Number" name="B[6][1].Number" type="number" value="9">
+                <input data-val="true" data-val-required="The ID field is required." id="B_6__1__ID" name="B[6][1].ID"
+                    type="hidden" value="28ab11ef-ce7f-44b2-87fb-69d4c04be9af">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_6__1__Post" name="B[6][1].Post"
+                    type="hidden" value="6">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_6__1__Side"
+                    name="B[6][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_5__1__Number" name="B[5][1].Number" type="number" value="7">
+                <input data-val="true" data-val-required="The ID field is required." id="B_5__1__ID" name="B[5][1].ID"
+                    type="hidden" value="e87ffba7-e7e6-46d0-b378-9d5932b4541b">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_5__1__Post" name="B[5][1].Post"
+                    type="hidden" value="5">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_5__1__Side"
+                    name="B[5][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_4__1__Number" name="B[4][1].Number" type="number" value="5">
+                <input data-val="true" data-val-required="The ID field is required." id="B_4__1__ID" name="B[4][1].ID"
+                    type="hidden" value="0067ed4e-54eb-4285-a310-bae5c8acb958">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_4__1__Post" name="B[4][1].Post"
+                    type="hidden" value="4">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_4__1__Side"
+                    name="B[4][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_3__1__Number" name="B[3][1].Number" type="number" value="3">
+                <input data-val="true" data-val-required="The ID field is required." id="B_3__1__ID" name="B[3][1].ID"
+                    type="hidden" value="93eb97cb-20ed-47df-89d4-79b7c7f0d7b4">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_3__1__Post" name="B[3][1].Post"
+                    type="hidden" value="3">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_3__1__Side"
+                    name="B[3][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_2__1__Number" name="B[2][1].Number" type="number" value="1">
+                <input data-val="true" data-val-required="The ID field is required." id="B_2__1__ID" name="B[2][1].ID"
+                    type="hidden" value="e1fee0f4-d771-451b-8389-393283ae002c">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_2__1__Post" name="B[2][1].Post"
+                    type="hidden" value="2">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_2__1__Side"
+                    name="B[2][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_1__1__Number" name="B[1][1].Number" type="number" value="1">
+                <input data-val="true" data-val-required="The ID field is required." id="B_1__1__ID" name="B[1][1].ID"
+                    type="hidden" value="f4162cee-020f-410c-8d89-1fce8e6c036a">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_1__1__Post" name="B[1][1].Post"
+                    type="hidden" value="1">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_1__1__Side"
+                    name="B[1][1].Side" type="hidden" value="Right">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_0__1__Number" name="B[0][1].Number" type="number" value="0">
+                <input data-val="true" data-val-required="The ID field is required." id="B_0__1__ID" name="B[0][1].ID"
+                    type="hidden" value="1961d6f9-cd1b-431b-b310-8855d3e6a064">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_0__1__Post" name="B[0][1].Post"
+                    type="hidden" value="0">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_0__1__Side"
+                    name="B[0][1].Side" type="hidden" value="Right">
+            </td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">
+                Левая сторона
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_13__0__Number" name="B[13][0].Number" type="number" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_13__0__ID" name="B[13][0].ID"
+                    type="hidden" value="e1ca7aab-d464-4579-b0b1-b0ce66524ea0">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_13__0__Post" name="B[13][0].Post"
+                    type="hidden" value="13">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_13__0__Side"
+                    name="B[13][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_12__0__Number" name="B[12][0].Number" type="number" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_12__0__ID" name="B[12][0].ID"
+                    type="hidden" value="2ec8f9cb-8bf2-4e1b-a271-d7f10fac6cff">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_12__0__Post" name="B[12][0].Post"
+                    type="hidden" value="12">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_12__0__Side"
+                    name="B[12][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_11__0__Number" name="B[11][0].Number" type="number" value="19">
+                <input data-val="true" data-val-required="The ID field is required." id="B_11__0__ID" name="B[11][0].ID"
+                    type="hidden" value="94293139-245a-4cfe-bf3a-13c677915f68">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_11__0__Post" name="B[11][0].Post"
+                    type="hidden" value="11">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_11__0__Side"
+                    name="B[11][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_10__0__Number" name="B[10][0].Number" type="number" value="18">
+                <input data-val="true" data-val-required="The ID field is required." id="B_10__0__ID" name="B[10][0].ID"
+                    type="hidden" value="26b25ff8-0fed-4e2b-bc29-fe532612a1e6">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_10__0__Post" name="B[10][0].Post"
+                    type="hidden" value="10">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_10__0__Side"
+                    name="B[10][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_9__0__Number" name="B[9][0].Number" type="number" value="16">
+                <input data-val="true" data-val-required="The ID field is required." id="B_9__0__ID" name="B[9][0].ID"
+                    type="hidden" value="ce4d721d-07f2-4ad5-8f63-e222d27558e0">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_9__0__Post" name="B[9][0].Post"
+                    type="hidden" value="9">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_9__0__Side"
+                    name="B[9][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_8__0__Number" name="B[8][0].Number" type="number" value="14">
+                <input data-val="true" data-val-required="The ID field is required." id="B_8__0__ID" name="B[8][0].ID"
+                    type="hidden" value="8ab077dc-580b-4482-86d2-db93a60da87a">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_8__0__Post" name="B[8][0].Post"
+                    type="hidden" value="8">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_8__0__Side"
+                    name="B[8][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_7__0__Number" name="B[7][0].Number" type="number" value="12">
+                <input data-val="true" data-val-required="The ID field is required." id="B_7__0__ID" name="B[7][0].ID"
+                    type="hidden" value="9b7d4f69-25bc-4322-a4e1-afdeaa8e92ed">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_7__0__Post" name="B[7][0].Post"
+                    type="hidden" value="7">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_7__0__Side"
+                    name="B[7][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_6__0__Number" name="B[6][0].Number" type="number" value="10">
+                <input data-val="true" data-val-required="The ID field is required." id="B_6__0__ID" name="B[6][0].ID"
+                    type="hidden" value="63c96dd2-02a4-4d7d-9bfa-616d1e1d26d4">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_6__0__Post" name="B[6][0].Post"
+                    type="hidden" value="6">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_6__0__Side"
+                    name="B[6][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_5__0__Number" name="B[5][0].Number" type="number" value="8">
+                <input data-val="true" data-val-required="The ID field is required." id="B_5__0__ID" name="B[5][0].ID"
+                    type="hidden" value="b274f73e-8b69-4cf5-83ff-c0d074036702">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_5__0__Post" name="B[5][0].Post"
+                    type="hidden" value="5">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_5__0__Side"
+                    name="B[5][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_4__0__Number" name="B[4][0].Number" type="number" value="6">
+                <input data-val="true" data-val-required="The ID field is required." id="B_4__0__ID" name="B[4][0].ID"
+                    type="hidden" value="f7cbe116-9801-4006-9516-9bcc37248f95">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_4__0__Post" name="B[4][0].Post"
+                    type="hidden" value="4">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_4__0__Side"
+                    name="B[4][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_3__0__Number" name="B[3][0].Number" type="number" value="4">
+                <input data-val="true" data-val-required="The ID field is required." id="B_3__0__ID" name="B[3][0].ID"
+                    type="hidden" value="7a2eee3e-2d6c-41c6-a50b-10d8ff44203e">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_3__0__Post" name="B[3][0].Post"
+                    type="hidden" value="3">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_3__0__Side"
+                    name="B[3][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_2__0__Number" name="B[2][0].Number" type="number" value="2">
+                <input data-val="true" data-val-required="The ID field is required." id="B_2__0__ID" name="B[2][0].ID"
+                    type="hidden" value="f1ffac0c-4c04-4529-85f1-0821c0bb8d9e">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_2__0__Post" name="B[2][0].Post"
+                    type="hidden" value="2">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_2__0__Side"
+                    name="B[2][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_1__0__Number" name="B[1][0].Number" type="number" value="2">
+                <input data-val="true" data-val-required="The ID field is required." id="B_1__0__ID" name="B[1][0].ID"
+                    type="hidden" value="75ab8ffc-e805-4772-8e55-84bbd727b986">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_1__0__Post" name="B[1][0].Post"
+                    type="hidden" value="1">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_1__0__Side"
+                    name="B[1][0].Side" type="hidden" value="Left">
+            </td>
+            <td class="">
+                <input class="w-100 text-box single-line" data-val="true"
+                    data-val-number="The field Номер блока кнопки must be a number."
+                    data-val-range="Номер блока кнопки должен быть от 0 до 19" data-val-range-max="19"
+                    data-val-range-min="0" data-val-required="The Номер блока кнопки field is required."
+                    id="B_0__0__Number" name="B[0][0].Number" type="number" value="0">
+                <input data-val="true" data-val-required="The ID field is required." id="B_0__0__ID" name="B[0][0].ID"
+                    type="hidden" value="7d770953-42d7-4c19-861c-5b7ff13456cf">
+                <input data-val="true" data-val-number="The field Номер поста must be a number."
+                    data-val-range="Номер поста должен быть от 0 до 13" data-val-range-max="13" data-val-range-min="0"
+                    data-val-required="The Номер поста field is required." id="B_0__0__Post" name="B[0][0].Post"
+                    type="hidden" value="0">
+                <input data-val="true" data-val-required="The Сторона поста field is required." id="B_0__0__Side"
+                    name="B[0][0].Side" type="hidden" value="Left">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<input type="submit" value="Сохранение" class="btn btn-success">
+<a class="btn btn-info" href="/PtzWebApp/">Отмена</a>
+<hr>
+<!-- <footer>
+    <p>Разработано 2021 - <a href="http://www.croc.ru">ЗАО 'КРОК инкорпорейтед'</a></p>
+</footer> -->
+
+
+{% endblock %}
