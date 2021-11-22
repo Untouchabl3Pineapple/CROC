@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'general/css/base.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,500,600,700" rel="stylesheet">
     {% block link %}{% endblock %}
   </head>
   <body>
@@ -22,8 +23,7 @@
         <li><a href="/main/monitoring">Мониторинг</a></li>
 
         {% if request.user.is_authenticated and request.user.is_staff %}
-        <li><a href="/services">Администрирование</a></li>
-        <!-- <li><a href="/main/buttons">Кнопки</a></li> -->
+        <li><a href="/main/types">Типы</a></li>
         {% endif %} {% if user.is_authenticated %}
         <li style="margin-left: 90%; margin-top: 2px; color: white">
           {{ user.get_username}}
