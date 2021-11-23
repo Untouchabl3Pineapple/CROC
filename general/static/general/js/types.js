@@ -1,6 +1,7 @@
-
 let count_selected = 0;
 let tJsonLen = 0;
+let uuid_delete_td_array = [];
+
 
 function make_page(types_json) {
     tJsonLen = types_json.length;
@@ -23,6 +24,7 @@ function make_page(types_json) {
 
     let typesTable = document.createElement("table");
     typesTable.className = "typesTable";
+    typesTable.id = "typesTable";
     types_div.append(typesTable);
 
     let typeHead = document.createElement("thead");
@@ -46,9 +48,10 @@ function make_page(types_json) {
     for (let i = 0; i < types_json.length; i++) {
         let typesRow = document.createElement("tr");
         typesRow.className = "typeBodyRow";
+        typesRow.id = "row=" + types_json[i].id;
 
         let typeTd = document.createElement("td");
-        typeTd.id = i;
+        typeTd.id = types_json[i].id;
         typeTd.className = "typesTd";
         typeTd.innerHTML = types_json[i].eventtype;
         typeTd.addEventListener("click", function() {
@@ -65,7 +68,6 @@ function make_page(types_json) {
 }
   
 
-
 function wrap_types() {
     let types_json;
     $.ajax({
@@ -78,14 +80,10 @@ function wrap_types() {
             make_page(types_json);
         },
     });
-
-
 }
 
 
-
 wrap_types();
-
 
 
 function add_event(i) {    
@@ -99,6 +97,7 @@ function add_event(i) {
     }
     
     input_type.className = "input_type";
+    input_type.id = "input_type";
 
     $(".add_button").remove();
 
@@ -107,11 +106,10 @@ function add_event(i) {
     add_div.append(plus_button);
     add_div.append(input_type);
 
+    input_type.value = "Введите тип происшествия";
     input_type.focus();
+    input_type.select();
 }
-
-
-
 
 
 
@@ -143,13 +141,18 @@ function uuidv4() {
   
 
 function plus_type(type, i) {
+    new_uuid = uuidv4();
+
+
     let body = document.getElementById("typesBody");
     let typesRow = document.createElement("tr");
     typesRow.className = "typeBodyRow";
+    typesRow.id = "row=" + new_uuid;
+
     body.append(typesRow);
 
     let typeTd = document.createElement("td");
-    typeTd.id = i;
+    typeTd.id = new_uuid;
     typeTd.className = "typesTd";
     typeTd.innerHTML = type;
     typeTd.addEventListener("click", function() {
@@ -158,11 +161,17 @@ function plus_type(type, i) {
 
     typesRow.append(typeTd);
 
+    let input_type = document.getElementById("input_type");
+    input_type.value = "Введите тип происшествия";
+    input_type.focus();
+    input_type.select();
+
+
 
     const csrftoken = getCookie("csrftoken");
 
     let dbJson = {
-        id: uuidv4(),
+        id: new_uuid,
         eventtype: type,
     };
 
@@ -185,12 +194,16 @@ function plus_type(type, i) {
 
 
 function onRowClicked(td) {
+    console.log(td.id);
+
     if (td.className == "typeTdActivated") {
         td.className = "typesTd";
         count_selected--;
-
+        let item_index = uuid_delete_td_array.indexOf(td.id);
+        uuid_delete_td_array.splice(item_index, 1);
     } else {
         td.className = "typeTdActivated";
+        uuid_delete_td_array.push(td.id);
         count_selected++;
     }
 
@@ -216,19 +229,77 @@ function onRowClicked(td) {
     }
 
     if (count_selected == 0) {
-        $(".del_button").remove();
-        let button_add = document.createElement("button");
-        button_add.className = "add_button";
-        button_add.innerHTML = "Добавить";
-        button_add.id = "add_button";
-        button_add.onclick = function() {
-            add_event(tJsonLen);
-        }
-        add_div.append(button_add);
+        make_add_button();
     }
 }
 
 
-function del_events() {
 
+function getCookie(name) {
+    let cookieValue = null;
+  
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+  
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+
+
+function del_events() {
+    const csrftoken = getCookie("csrftoken");
+    let headers = { "X-CSRFToken": csrftoken };
+    
+    if (count_selected == 0) {
+        return;
+    }
+
+    let types_table = document.getElementById("typesTable");
+
+    for (let i = 0; i < count_selected; i++) {
+        console.log("id = ", uuid_delete_td_array[i]);
+        let row = document.getElementById("row=" + uuid_delete_td_array[i]);
+        console.log(row);
+        for (let j = 0; j < types_table.rows.length; j++) {
+            if (types_table.rows[j] == row) {
+                console.log(j);
+                types_table.deleteRow(j);
+                break;
+            }
+        }
+    }
+    count_selected = 0;
+    uuid_delete_td_array = [];
+
+    make_add_button();
+
+    $.ajax({
+        url: "http://127.0.0.1:8000/main/del_type/" + uuid + "/",
+        headers: headers,
+        type: "DELETE",
+        success: function() {
+            console.log("SUCCESS DELETE TYPE EVENT");
+        }
+      });
+}
+
+
+function make_add_button() {
+    $(".del_button").remove();
+    let button_add = document.createElement("button");
+    button_add.className = "add_button";
+    button_add.innerHTML = "Добавить";
+    button_add.id = "add_button";
+    button_add.onclick = function() {
+        add_event(tJsonLen);
+    }
+    add_div.append(button_add);
 }
