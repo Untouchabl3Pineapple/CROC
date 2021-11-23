@@ -1,0 +1,117 @@
+* {
+    font-family: 'Montserrat';
+}
+ 
+ .add_div {
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+}
+
+.types_div {
+    margin-top: 30px;
+    height: 90%;
+}
+
+.add_button {
+    width: 90%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: rgba(59, 28, 255, 0.63);
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: large;
+    color: white;
+}
+
+
+.del_button {
+    width: 90%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: #CA0000;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: large;
+    color: white;
+}
+
+
+
+.typesTable {
+    border-right: solid 2px black; 
+    border-left: solid 2px black;
+    border: 2px solid black;
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-collapse: collapse;
+
+    border-radius: 10px;
+    border-style: hidden; /* hide standard table (collapsed) border */
+    box-shadow: 0 0 0 2px black; /* this draws the table border  */
+}
+
+
+.typeHeadRow {
+    height : 80px;
+}
+
+.typesHeadTd {
+    border-right: solid 2px black; 
+    border-left: solid 2px black;
+    text-align: center;
+    border-bottom: 2px solid black;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+
+
+.typeBodyRow {
+    height : 60px;
+}
+
+
+
+.typesTd {
+    border-bottom: 2px solid black;
+    border-right: solid 2px black; 
+    border-left: solid 2px black;
+}
+
+.typeTdActivated {
+    border-bottom: 2px solid black;
+    border-right: solid 2px black; 
+    border-left: solid 2px black;
+    background-color: #C4C4C4;
+}
+
+
+
+
+.input_type {
+    font-size: 16pt;
+    padding-top: 0%;
+    border-width:0px;
+    border:none;
+    border-radius: 20px;
+ 
+    margin-left: 8%;
+    height: 49px;
+    width: 536px;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

@@ -37,6 +37,9 @@ def buttons(request):
 def edit(request, project_id='None'):
     return render(request, "general/edit.html")
 
+def types(request):
+    return render(request, "general/types.html")
+
 
 class ButtonsEventsViewSet(viewsets.ModelViewSet):
     queryset = Buttonsevents.objects.all()
