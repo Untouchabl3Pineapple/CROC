@@ -275,20 +275,20 @@ function del_events() {
                 break;
             }
         }
+
+        $.ajax({
+            url: "http://127.0.0.1:8000/main/del_type/" + uuid_delete_td_array[i] + "/",
+            headers: headers,
+            type: "DELETE",
+            success: function() {
+                console.log("SUCCESS DELETE TYPE EVENT");
+            }
+          });
     }
     count_selected = 0;
     uuid_delete_td_array = [];
 
     make_add_button();
-
-    $.ajax({
-        url: "http://127.0.0.1:8000/main/del_type/" + uuid + "/",
-        headers: headers,
-        type: "DELETE",
-        success: function() {
-            console.log("SUCCESS DELETE TYPE EVENT");
-        }
-      });
 }
 
 
