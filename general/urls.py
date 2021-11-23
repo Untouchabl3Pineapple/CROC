@@ -33,4 +33,5 @@ urlpatterns = [
     path("monitoring/edit/<project_id>/", views.edit, name="edit"),
     path("types/", views.types, name="types"),
     path("buttons/", views.buttons, name="buttons"),
+    path("del_type/<uuid:product_id>/", views.product_delete_rest_endpoint, name="del"),
 ]

@@ -7,6 +7,8 @@ from .models import *
 from rest_framework import viewsets
 # from rest_framework import api_view
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 # from rest_framework.parsers import JSONParser
 
 from .serializers import (
@@ -20,6 +22,14 @@ from .serializers import (
 @api_view(['GET', 'PUT', 'DELETE'])
 def put_by_key(request, pk):
     pass
+
+
+@api_view(["DELETE", "GET"])
+def product_delete_rest_endpoint(request, product_id):
+    print("HEREREHRHEHREHRHEHREHRHEHRHERHERHEHR\n\n\n")
+    Eventstypes.objects.get(id=product_id).delete()
+    
+
 
 
 def general(request):
@@ -39,6 +49,8 @@ def edit(request, project_id='None'):
 
 def types(request):
     return render(request, "general/types.html")
+
+
 
 
 class ButtonsEventsViewSet(viewsets.ModelViewSet):
