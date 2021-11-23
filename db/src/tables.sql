@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Events
 (
     ID                  UUID PRIMARY KEY,
     ButtonEvent_ID      UUID NOT NULL REFERENCES ButtonsEvents(ID),
-    EventType_ID        UUID REFERENCES EventsTypes(ID),
+    EventType_ID        UUID REFERENCES EventsTypes(ID) ON DELETE SET NULL,
     EventDescription    TEXT,
     DetectingTime       TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FixingTime          TIMESTAMP WITH TIME ZONE,
