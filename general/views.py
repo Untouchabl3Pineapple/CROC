@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests
@@ -24,11 +25,10 @@ def put_by_key(request, pk):
     pass
 
 
-@api_view(["DELETE", "GET"])
+@api_view(["DELETE"])
 def product_delete_rest_endpoint(request, product_id):
-    print("HEREREHRHEHREHRHEHREHRHEHRHERHERHEHR\n\n\n")
-    Eventstypes.objects.get(id=product_id).delete()
-    
+    Eventstypes.objects.get(id=product_id).delete()    
+    return render(request, "general/types.html")
 
 
 
