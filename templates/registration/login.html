@@ -7,9 +7,10 @@ Login
 {% block body %}
 
 <div class="login-box">
-    <h1 class="heading">Login</h1>
+    <h1 class="heading">Петербургский тракторный завод</h1>
+    <!-- <div class="logo"> </div> -->
 
-    {% if form.errors %}
+    <!-- {% if form.errors %}
     <p>Your username and password didn't match.</p>
     {% endif %}
 
@@ -20,7 +21,7 @@ Login
     {% else %}
         <!-- <p>Please login to see this page.</p> -->
     {% endif %}
-    {% endif %}
+    {% endif %} -->
 
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -36,7 +37,7 @@ Login
     </div>
 
 
-    <input class="btn" type="submit" onclick="location.href='https://google.com'" target="_blank" value="Sign in">
+    <input class="btn" type="submit" onclick="location.href='https://google.com'" target="_blank" value="Войти">
     <input type="hidden" name="next" value="{{ next }}" />
     </form>
 
