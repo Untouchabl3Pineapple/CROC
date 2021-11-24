@@ -64,17 +64,6 @@ function show_events_temp(jsonEvents) {
   eventsTBody.className = "eventsTBody";
   eventsTable.append(eventsTBody);
 
-  // let eventTypesJson;
-  // $.ajax({
-  //   url: "http://127.0.0.1:8000/main/EventsTypes/?format=json",
-  //   method: "get",
-  //   dataType: "json",
-  //   async: false,
-  //   success: function (data) {
-  //     eventTypesJson = data;
-  //   },
-  // });
-
   for (let i = 0; i < COUNT_HISTORY_LINES; i++) {
     let eventsBodyRowNum = document.createElement("tr");
     eventsBodyRowNum.id = "eventsBodyRowNum" + i;
@@ -98,7 +87,7 @@ function show_events_temp(jsonEvents) {
 
     if (jsonEvents[i].eventtype != null) {
       $.getJSON(jsonEvents[i].eventtype, function(data) {
-        typeEvent.innerHTML = data.eventtype;   
+        typeEvent.innerHTML = data.eventtype.slice(0, 23);   
       });
     } else {
       typeEvent.innerHTML = "-";
@@ -111,7 +100,7 @@ function show_events_temp(jsonEvents) {
     if (jsonEvents[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
     } else {
-      descriptionAddButton.innerHTML = jsonEvents[i].eventdescription;
+      descriptionAddButton.innerHTML = jsonEvents[i].eventdescription.slice(0, 62);
     }
 
     descriptionAddButton.id = "desc" + i;
@@ -177,7 +166,7 @@ function loadNewInform_temp(eventTypesJson) {
 
     if (eventTypesJson[i].eventtype != null) {
       $.getJSON(eventTypesJson[i].eventtype, function(data) {
-        typeEvent.innerHTML = data.eventtype;   
+        typeEvent.innerHTML = data.eventtype.slice(0, 23);   
       });
     } else {
       typeEvent.innerHTML = "-";
@@ -189,7 +178,7 @@ function loadNewInform_temp(eventTypesJson) {
     if (eventTypesJson[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
     } else {
-      descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription;
+      descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription.slice(0, 62);
     }
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";

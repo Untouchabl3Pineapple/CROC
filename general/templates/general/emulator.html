@@ -6,16 +6,37 @@
 {% endblock %}
 
 {% block link %}
-<link rel="stylesheet" href="{% static 'general/css/monitoring.css' %}"/>
-<link rel="stylesheet" href="{% static 'general/css/emulator.css' %}"/>
+<link rel="stylesheet" href="{% static 'general/css/monitoring.css' %}" />
+<link rel="stylesheet" href="{% static 'general/css/emulator.css' %}" />
 {% endblock %}
 
 {% block body %}
+
+<div class="mainTitle">Имитатор кнопок</div>
+
 <script src={% static "general/js/board.js" %}></script>
 <script src={% static "general/js/emulator.js" %}></script>
 <script src={% static "general/js/emulator_client.js" %}></script>
 
-<button id="buttonStart" class="buttonMove" name="buttonStart" style="background-color: rgb(251, 255, 16)" onclick=pressAllButtons(event)>Рабочий день начался</button>
-<button id="buttonEnd" class="buttonMove" name="buttonEnd" style="background-color: rgb(16, 255, 36)" onclick=pressAllButtons(event)>Рабочий день окончен</button>
+<!-- <div id="button_selection_1">
+    <window>
+        <div class="selectionTitle"> Выберите цвет кнопки </div>
+
+        <button id="buttonRed" class="selectionButton" style="background-color: rgb(255, 0, 0)" onclick=colorsSwitcher(event)>Красная кнопка</button>
+        <button id="buttonYellow" class="selectionButton" style="background-color: rgb(255, 255, 0)" onclick=colorsSwitcher(event)>Желтая кнопка</button>
+        <button id="buttonGreen" class="selectionButton" style="background-color: rgb(0, 255, 0)" onclick=colorsSwitcher(event)>Зеленая кнопка</button>
+    </window>
+</div>
+
+<div id="button_selection_2">
+    <window>
+        <div class="selectionTitle"> Выберите цвет кнопки </div>
+        
+        <button id="buttonRed" class="selectionButton" style="background-color: rgb(255, 0, 0)" onclick=colorsSwitcher(event)>Красная кнопка</button>
+        <button id="buttonYellow" class="selectionButton" style="background-color: rgb(255, 255, 0)" onclick=colorsSwitcher(event)>Желтая кнопка</button>
+        <button id="buttonGreen" class="selectionButton" style="background-color: rgb(0, 255, 0)" onclick=colorsSwitcher(event)>Зеленая кнопка</button>
+    </window>
+</div> -->
+
 
 {% endblock %}

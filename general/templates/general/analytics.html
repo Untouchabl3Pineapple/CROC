@@ -1,0 +1,14 @@
+{% extends 'general/base.html' %}
+{% load static %}
+
+{% block title %}
+Аналитика
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'general/css/base.css' %}" />
+{% endblock %}
+
+{% block body %}
+<iframe src="https://6xpq9ybzjixcmmr.eu.qlikcloud.com/single/?appid=b3542ee8-dd45-43ac-9b15-7e378fcfc01f&sheet=6922993f-437c-4718-9be6-387bc8019322&opt=ctxmenu,currsel" style="border:none;width:100%;height:100%;"></iframe>
+{% endblock %}
