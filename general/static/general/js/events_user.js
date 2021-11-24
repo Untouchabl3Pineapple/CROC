@@ -84,7 +84,12 @@ function show_events_temp(jsonEvents) {
     eventsBodyRowNum.className = "eventsBodyRowOdd";
 
     let postNum = document.createElement("td");
-    postNum.innerHTML = i;
+    console.log(jsonEvents[i].buttonevent);
+    $.getJSON(jsonEvents[i].buttonevent, function (data) {
+        console.log(data);
+      postNum.innerHTML = data.number;
+    });
+
     postNum.className = "eventsTd";
     postNum.id = "post" + i;
     eventsBodyRowNum.append(postNum);

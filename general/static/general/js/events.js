@@ -88,6 +88,7 @@ function show_events_temp(jsonEvents) {
     let postNum = document.createElement("td");
     console.log(jsonEvents[i].buttonevent);
     $.getJSON(jsonEvents[i].buttonevent, function (data) {
+        console.log(data);
       postNum.innerHTML = data.number;
     });
 

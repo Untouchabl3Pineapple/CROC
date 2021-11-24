@@ -1,5 +1,6 @@
 {% extends 'general/base.html' %}
 {% load static %}
+{% load auth_extras %}
 
 {% block title %}
 Мониторинг
@@ -13,9 +14,15 @@
 
 {% block body %}
 
-{% if request.user.is_authenticated and request.user.is_staff %}
+{% if request.user|has_group:"directors" %} 
     <script src={% static "general/js/events.js" %}></script>
-{% else %} 
+{% endif %}
+
+{% if request.user|has_group:"masters" %}
+    <script src={% static "general/js/events.js" %}></script>
+{% endif %}
+
+{% if request.user.is_staff %}
     <script src={% static "general/js/events_user.js" %}></script>
 {% endif %}
 

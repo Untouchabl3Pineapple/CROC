@@ -1,4 +1,6 @@
 {% load static %}
+{% load auth_extras %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,32 +26,48 @@
       </a>
       <div class="head">
         <div class="item"><a href="/main/monitoring">Мониторинг</a></div>
-        <div class="item"><a href="https://6xpq9ybzjixcmmr.eu.qlikcloud.com/sense/app/b3542ee8-dd45-43ac-9b15-7e378fcfc01f/sheet/6922993f-437c-4718-9be6-387bc8019322/state/analysis" target="_blank">Аналитика</a></div>
 
-        {% if request.user.is_authenticated and request.user.is_staff %}
-        <style>
-            .tail {
-                display: flex;
-                padding-top: 20px;
-                margin-left: 150px;
-                padding-bottom: 24px;
-            }
-        </style>
+        {% if request.user.is_staff %}
+          <style>
+              .tail {
+                  display: flex;
+                  padding-top: 20px;
+                  margin-left: 470px;
+                  padding-bottom: 24px;
+              }
+          </style>
 
-        <div class="item"><a href="/main/types">Типы</a></div>
-        <div class="item"><a href="/admin/">Настройки</a></div>
-        {% endif %} {% if user.is_authenticated %}
-      </div>
+          <div class="item"><a href="/admin/">Настройки</a></div>
+        {% endif %}
 
-      <div class="tail">
-        <div class="item">{{ user.get_username}}</div>
-        <div class="item">
-          <a href="{% url 'login'%}?next={{request.path}}">Выход</a>
+        {% if request.user|has_group:"directors" %} 
+            <style>
+              .tail {
+                  display: flex;
+                  padding-top: 20px;
+                  margin-left: 300px;
+                  padding-bottom: 24px;
+              }
+          </style>
+          <div class="item"><a href="https://6xpq9ybzjixcmmr.eu.qlikcloud.com/sense/app/b3542ee8-dd45-43ac-9b15-7e378fcfc01f/sheet/6922993f-437c-4718-9be6-387bc8019322/state/analysis" target="_blank">Аналитика</a></div>
+          <div class="item"><a href="/main/types">Типы</a></div>
+        {% endif %}
+
+        <!-- {% if request.user|has_group:"masters" %}
+        {% endif %} -->
+
+      {% if user.is_authenticated %}
         </div>
-        {% else %}
-        <div id="auth" class="item">
-          <a href="{% url 'login'%}?next={{request.path}}">Авторизация</a>
-        </div>
+
+        <div class="tail">
+          <div class="item">{{ user.get_username }}</div>
+          <div class="item">
+            <a href="{% url 'login'%}?next={{request.path}}">Выход</a>
+          </div>
+          {% else %}
+          <div id="auth" class="item">
+            <a href="{% url 'login'%}?next={{request.path}}">Авторизация</a>
+          </div>
         {% endif %}
       </div>
     </div>
