@@ -1,88 +1,59 @@
 @import "https://use.fontawesome.com/releases/v5.8.2/css/all.css";
 
 * {
-    font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  text-align: center;
 }
 
-
 .menu {
-    display: flex;
-    background: rgb(71, 71, 212);
-    height: 80px;
-    font-size: 14pt;
+  display: flex;
+  background: rgb(71, 71, 212);
+  height: 80px;
+  font-size: 14pt;
 }
 
 .menu a {
-    color: black;
+  color: black;
 }
 
 .logo {
-    margin-left: 30px;
-    padding-top: 12px;
+  margin-left: 30px;
+  padding-top: 12px;
 }
 
-
 .head {
-    display: flex;
-    padding-top: 20px;
-    padding-bottom: 24px;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 24px;
 }
 
 .item {
-    width: 130px;
-    margin-left: 20px;
-    padding-top: 6px;
-    padding-left: 4px;
-    padding-right: 4px;
-    border-radius: 0px 15px 15px 15px;
-    background-color: white;
+  width: 130px;
+  margin-left: 20px;
+  padding-top: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 0px 15px 15px 15px;
+  background-color: white;
 }
 
-
-
-
 .tail {
-    display: flex;
-    padding-top: 20px;
-    margin-left: 280px;
-    padding-bottom: 24px;
+  display: flex;
+  padding-top: 20px;
+  margin-left: 460px;
+  padding-bottom: 24px;
 }
 
 .menu a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
-/* body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-size: cover;
-    text-align: center;
-} */
-
-/* 
-
-.menu ul {
-    display: flex;
-    list-style: none;
-    padding-top: 5px;
+.menu img {
+    padding-left: 30px;
 }
-
-.menu li {    
-    background: white;            
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-.end_elem {
-  margin-left: 90%;
-} */ */

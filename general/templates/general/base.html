@@ -6,41 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'general/css/base.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,500,600,700" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,500,600,700"
+      rel="stylesheet"
+    />
     {% block link %}{% endblock %}
   </head>
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-    <div class="menu">     
+    <div class="menu">
       <a class="logo" href="/main/monitoring">
         <img
           src="{% static 'general/img/CompanyLogo.png' %}"
           alt="CompanyLogo"
         />
       </a>
-        <div class="head">
-      
-          <div class="item"><a href="/main/monitoring">Мониторинг</a></div>
-          <div class="item"><a href="/main/analytics">Аналитика</a></div>
+      <div class="head">
+        <div class="item"><a href="/main/monitoring">Мониторинг</a></div>
+        <div class="item"><a href="/main/analytics">Аналитика</a></div>
 
-          {% if request.user.is_authenticated and request.user.is_staff %}
-          <div class="item"><a href="/main/types">Типы</a></div>
-          {% endif %} {% if user.is_authenticated %}
-        </div>
+        {% if request.user.is_authenticated and request.user.is_staff %}
+        <style>
+            .tail {
+                display: flex;
+                padding-top: 20px;
+                margin-left: 150px;
+                padding-bottom: 24px;
+            }
+        </style>
 
-        <div class="tail">
-          <!-- <li style="margin-left: 90%; margin-top: 2px; color: white"> -->
-          <div class="item">{{ user.get_username}}</div>
-          <div class="item">
-            <a href="{% url 'login'%}?next={{request.path}}">Выход</a>
-          </div>
-          {% else %}
-          <div class="item">
-            <a href="{% url 'login'%}?next={{request.path}}">Login</a>
-          </div>
-          {% endif %}
+        <div class="item"><a href="/main/types">Типы</a></div>
+        <div class="item"><a href="/admin/">Настройки</a></div>
+        {% endif %} {% if user.is_authenticated %}
+      </div>
+
+      <div class="tail">
+        <div class="item">{{ user.get_username}}</div>
+        <div class="item">
+          <a href="{% url 'login'%}?next={{request.path}}">Выход</a>
         </div>
+        {% else %}
+        <div class="item">
+          <a href="{% url 'login'%}?next={{request.path}}">Login</a>
+        </div>
+        {% endif %}
+      </div>
     </div>
 
     {% block body %}{% endblock %}
