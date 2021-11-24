@@ -16,6 +16,20 @@ const COLUMN_WIDTH = [
 const COUNT_HISTORY_LINES = 10;
 
 function formatDate(date) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let secs = date.getSeconds();
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (secs < 10) {
+    secs = "0" + secs;
+  }
+
   return (
     date.getFullYear() +
     "-" +
@@ -23,11 +37,11 @@ function formatDate(date) {
     "-" +
     date.getDate() +
     "\n" +
-    date.getHours() +
+    hours +
     ":" +
-    date.getMinutes() +
+    minutes +
     ":" +
-    date.getSeconds()
+    secs
   );
 }
 
@@ -80,8 +94,8 @@ function show_events_temp(jsonEvents) {
     typeEvent.className = "typeEvent";
 
     if (jsonEvents[i].eventtype != null) {
-      $.getJSON(jsonEvents[i].eventtype, function(data) {
-        typeEvent.innerHTML = data.eventtype.slice(0, 23);   
+      $.getJSON(jsonEvents[i].eventtype, function (data) {
+        typeEvent.innerHTML = data.eventtype.slice(0, 23);
       });
     } else {
       typeEvent.innerHTML = "-";
@@ -94,7 +108,10 @@ function show_events_temp(jsonEvents) {
     if (jsonEvents[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
     } else {
-      descriptionAddButton.innerHTML = jsonEvents[i].eventdescription.slice(0, 62);
+      descriptionAddButton.innerHTML = jsonEvents[i].eventdescription.slice(
+        0,
+        62
+      );
     }
 
     descriptionAddButton.id = "desc" + i;
@@ -128,7 +145,7 @@ function show_events_temp(jsonEvents) {
     }
     timeFixing.id = "fix" + i;
     eventsBodyRowNum.append(timeFixing);
-}
+  }
 }
 
 function loadNewInform_temp(eventTypesJson) {
@@ -146,8 +163,8 @@ function loadNewInform_temp(eventTypesJson) {
     typeEvent.className = "typeEvent";
 
     if (eventTypesJson[i].eventtype != null) {
-      $.getJSON(eventTypesJson[i].eventtype, function(data) {
-        typeEvent.innerHTML = data.eventtype.slice(0, 23);   
+      $.getJSON(eventTypesJson[i].eventtype, function (data) {
+        typeEvent.innerHTML = data.eventtype.slice(0, 23);
       });
     } else {
       typeEvent.innerHTML = "-";
@@ -159,7 +176,10 @@ function loadNewInform_temp(eventTypesJson) {
     if (eventTypesJson[i].eventdescription == null) {
       descriptionAddButton.innerHTML = "-";
     } else {
-      descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription.slice(0, 62);
+      descriptionAddButton.innerHTML = eventTypesJson[i].eventdescription.slice(
+        0,
+        62
+      );
     }
     descriptionAddButton.id = "desc" + i;
     descriptionAddButton.className = "descriptionButton";

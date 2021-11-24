@@ -50,6 +50,10 @@ body {
   padding-bottom: 24px;
 }
 
+#auth {
+    margin-left: 650px;
+}
+
 .menu a {
   text-decoration: none;
 }
