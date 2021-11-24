@@ -30,7 +30,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path("monitoring/", views.general, name="home"),
     path("emulator/", views.emulator, name="emulator"),
-    path("analytics/", views.analytics, name="analytics"),
+    # path("analytics/", views.analytics, name="analytics"),
     path("monitoring/edit/<project_id>/", views.edit, name="edit"),
     path("types/", views.types, name="types"),
     path("buttons/", views.buttons, name="buttons"),

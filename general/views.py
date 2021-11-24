@@ -40,8 +40,8 @@ def emulator(request):
     return render(request, "general/emulator.html")
 
 
-def analytics(request):
-    return render(request, "general/analytics.html")
+# def analytics(request):
+#     return render(request, "general/analytics.html")
 
 
 def buttons(request):
