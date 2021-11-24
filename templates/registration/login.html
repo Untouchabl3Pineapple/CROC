@@ -1,27 +1,22 @@
 {% extends 'registration/base.html' %}
+{% load static %}
 
 {% block title %}
-Login
+Авторизация
 {% endblock %}
 
 {% block body %}
 
 <div class="login-box">
-    <h1 class="heading">Петербургский тракторный завод</h1>
-    <!-- <div class="logo"> </div> -->
+    <div class="heading">
+        Петербургский тракторный завод
 
-    <!-- {% if form.errors %}
-    <p>Your username and password didn't match.</p>
-    {% endif %}
-
-    {% if next %}
-    {% if user.is_authenticated %}
-        <p>Your account doesn't have access to this page. To proceed,
-        please login with an account that has access.</p>
-    {% else %}
-        <!-- <p>Please login to see this page.</p> -->
-    {% endif %}
-    {% endif %} -->
+        <img
+            src="{% static 'registration/img/CompanyLogo.png' %}"
+            alt="CompanyLogo"
+        />
+    </div>
+    
 
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -37,7 +32,7 @@ Login
     </div>
 
 
-    <input class="btn" type="submit" onclick="location.href='https://google.com'" target="_blank" value="Войти">
+    <input class="btn" type="submit" value="Войти">
     <input type="hidden" name="next" value="{{ next }}" />
     </form>
 
